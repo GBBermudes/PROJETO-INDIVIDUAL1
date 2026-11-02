@@ -93,7 +93,8 @@ body {
 
 body:has(#container:target) .navbar a[href="#container"],
 body:has(#porque-eu-pesco:target) .navbar a[href="#porque-eu-pesco"],
-body:has(#modalidades:target) .navbar a[href="#modalidades"] {
+body:has(#modalidades:target) .navbar a[href="#modalidades"],
+body:has(#recordacoes:target) .navbar a[href="#recordacoes"] {
     font-weight: 900;
 }
 
@@ -310,6 +311,7 @@ button:active {
 
 .social2 {
   margin-top: 0;
+  padding-top: 30px;
   background-color: #EDF0EA;
 }
 
@@ -318,7 +320,7 @@ button:active {
 }
 
 .diario-pescarias h1 {
-  margin-top: 40px;
+  margin-top: 0;
   margin-bottom: 0;
   margin-left: 100px;
   font-size: 44px;
@@ -327,9 +329,55 @@ button:active {
 
 .diario-pescarias p {
   margin-bottom: 0;
+  margin-left: 100px;
+  color: #566A68;
+  margin-top: -1px;
 }
 
+.relatos {
+  display: flex;
+  padding: 30px;
+  gap: 40px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.relatos img {
+  width: 700px;
+  height: 400px;
+  border-radius: 25px;
+}
+
+.relato {
+  flex: 0 0 300px;
+}
+
+.relatos::-webkit-scrollbar {
+    height: 17px;
+}
+
+.relatos::-webkit-scrollbar-track {
+    background: #D5DDD2;
+    border-radius: 10px;
+    border: 2px solid #EDF0EA;
+}
+
+.relatos::-webkit-scrollbar-thumb {
+    background: #71866B;
+    border-radius: 10px;
+    border: 2px solid #D5DDD2;
+}
+
+.relatos::-webkit-scrollbar-thumb:hover {
+    background: #536B50;
+}
+
+
 .container2 {
+  margin-top: 0;
+}
+
+.boxes2 {
   margin-top: 0;
 }
 
