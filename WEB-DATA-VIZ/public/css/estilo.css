@@ -94,7 +94,8 @@ body {
 body:has(#container:target) .navbar a[href="#container"],
 body:has(#porque-eu-pesco:target) .navbar a[href="#porque-eu-pesco"],
 body:has(#modalidades:target) .navbar a[href="#modalidades"],
-body:has(#recordacoes:target) .navbar a[href="#recordacoes"] {
+body:has(#recordacoes:target) .navbar a[href="#recordacoes"],
+body:has(#contato:target) .navbar a[href="#contato"] {
     font-weight: 900;
 }
 
@@ -353,23 +354,23 @@ button:active {
 }
 
 .relatos::-webkit-scrollbar {
-    height: 17px;
+  height: 17px;
 }
 
 .relatos::-webkit-scrollbar-track {
-    background: #D5DDD2;
-    border-radius: 10px;
-    border: 2px solid #EDF0EA;
+  background: #D5DDD2;
+  border-radius: 10px;
+  border: 2px solid #EDF0EA;
 }
 
 .relatos::-webkit-scrollbar-thumb {
-    background: #71866B;
-    border-radius: 10px;
-    border: 2px solid #D5DDD2;
+  background: #71866B;
+  border-radius: 10px;
+  border: 2px solid #D5DDD2;
 }
 
 .relatos::-webkit-scrollbar-thumb:hover {
-    background: #536B50;
+  background: #536B50;
 }
 
 
@@ -387,14 +388,79 @@ button:active {
   align-items: center;
 }
 
+.social4 {
+  margin-top: 0;
+  background-color: #E2E8E1;
+  border: 0.5px solid #C3CEC6;
+  padding-top: 50px;
+  padding-bottom: -20px;
+  padding-right: 100px;
+}
+
+.entre-contato {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+.entre-contato h1 {
+  margin-top: 0;
+  margin-left: 100px;
+  font-size: 45px;
+  color: #17262A;
+}
+
+.entre-contato p {
+  margin-left: 110px;
+  margin-top: -10px;
+  color: #566A68;
+  font-size: 20px;
+}
+
+.contato {
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.email {
+  background-color: #B7862B;
+  padding: 10px 20px;
+  border-radius: 50px;
+  margin-left: 40px;
+}
+
+.area-email p {
+  margin-bottom: -15px;
+  margin-top: -10px;
+  color: #566A68;
+  margin-left: 50px;
+  font-size: 20px;
+}
+
+
 /* FOOTER */
 
-.footer {
-  background-color: #32b9cd;
-  height: 150px;
-  color: #fff;
+.footerr {
   display: flex;
+  align-items: center;
+  padding-top: 10px;
+  margin-top: 0;
+  background-color: #14262B;
+  height: 150px;
+  color: #D5DDD2;
   font-size: 15px;
+}
+
+.footerr h3 {
+  margin-top: 0;
+  margin-left: 100px;
+}
+
+.footerr p {
+  margin-left: 100px;
+  line-height: 1.7;
 }
 
 .footer .container {
