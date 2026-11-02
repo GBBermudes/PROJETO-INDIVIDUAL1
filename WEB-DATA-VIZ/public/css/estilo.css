@@ -1,9 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Junge&family=Kapakana:wght@300..400&family=Young+Serif&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
 
 .junge-regular {
   font-family: "Junge", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.young-serif-regular {
+  font-family: "Young Serif", serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -48,7 +59,7 @@ body {
   z-index: 9999;
   height: var(--tamanho-header);
   width: 100%;
-  background-color: rgba(16, 47, 48, 0.92);
+  background-color: rgba(16, 47, 48, 0.95);
   border-bottom: 2px solid #42615D;
 }
 
@@ -81,7 +92,8 @@ body {
 }
 
 body:has(#container:target) .navbar a[href="#container"],
-body:has(#boxes:target) .navbar a[href="#boxes"] {
+body:has(#porque-eu-pesco:target) .navbar a[href="#porque-eu-pesco"],
+body:has(#modalidades:target) .navbar a[href="#modalidades"] {
     font-weight: 900;
 }
 
@@ -95,6 +107,7 @@ body:has(#boxes:target) .navbar a[href="#boxes"] {
   color: white;
   width: fit-content;
   font-weight: 500;
+  line-height: 1;
 }
 
 .header h1 {
@@ -161,6 +174,7 @@ button:active {
 .social {
   background-color: #e5e5e5;
   display: flex;
+  margin-bottom: 0px;
 }
 
 .social .container {
@@ -193,6 +207,59 @@ button:active {
   font-family: 'Inter', sans-serif;
 }
 
+.box-modalidades {
+  margin-top: 0;
+}
+.box-modalidades h1 {
+  margin-top: 40px;
+  margin-left: 100px;
+  font-size: 44px;
+  color: #17262A;
+}
+
+.box-modalidades p {
+  margin-top: -30px;
+  margin-left: 100px;
+  color: #566A68;
+}
+
+.modalidades {
+  display: flex;
+  margin-left: 90px;
+  margin-right: 100px;
+  margin-top: 30px;
+}
+
+.modalidade {
+  height: 100%;
+  width: 400px;
+  padding: 20px;
+  margin: 20px;
+  text-align: left;
+  border-top: 2px solid #5E7A4F;
+}
+
+.modalidade img {
+  height: 50px;
+  width: 50px;
+}
+
+.modalidade h3 {
+  font-size: 23px;
+  font-family: "Young Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.modalidade p {
+  color: #566A68;
+}
+
+
+.boxes1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 .box1 h2 {
   text-align: left;
   color: rgba(16, 47, 48, 0.92);
@@ -204,6 +271,7 @@ button:active {
 .box h1 {
   margin-top: -5px;
   font-size: 40px;
+  color: #17262A;
 }
 
 .box p {
@@ -232,6 +300,37 @@ button:active {
   justify-content: space-between;
   width: 100%;
   padding: 30px 0;
+}
+
+.social1 {
+  background-color: #E2E8E1;
+  border: 0.5px solid #C3CEC6;
+  margin: 0;
+}
+
+.social2 {
+  margin-top: 0;
+  background-color: #EDF0EA;
+}
+
+.diario-pescarias {
+  margin-top: 0;
+}
+
+.diario-pescarias h1 {
+  margin-top: 40px;
+  margin-bottom: 0;
+  margin-left: 100px;
+  font-size: 44px;
+  color: #17262A;
+}
+
+.diario-pescarias p {
+  margin-bottom: 0;
+}
+
+.container2 {
+  margin-top: 0;
 }
 
 .box {
