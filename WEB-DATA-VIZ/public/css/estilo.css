@@ -154,6 +154,34 @@ button:active {
   width: 170px;
 }
 
+.box {
+  flex: 2;
+  margin-left: -140px;
+}
+
+.box1 {
+  flex: 1;
+  text-align: justify
+}
+
+.box1 p {
+  text-align: justify
+}
+.box h1 {
+  margin-top: -5px;
+  font-size: 40px;
+}
+
+.box p {
+  margin-top: -10px;
+  margin-left: -460px;
+}
+
+.box h4 {
+  color: #4B6640;
+  margin-left: -450px;
+}
+
 .social .container .boxes {
   display: flex;
   justify-content: space-between;
