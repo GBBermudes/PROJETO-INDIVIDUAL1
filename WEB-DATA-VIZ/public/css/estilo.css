@@ -495,7 +495,7 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: rgb(66, 151, 92);
+  color: #42615D;
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
