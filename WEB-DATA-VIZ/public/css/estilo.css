@@ -95,7 +95,8 @@ body:has(#container:target) .navbar a[href="#container"],
 body:has(#porque-eu-pesco:target) .navbar a[href="#porque-eu-pesco"],
 body:has(#modalidades:target) .navbar a[href="#modalidades"],
 body:has(#recordacoes:target) .navbar a[href="#recordacoes"],
-body:has(#contato:target) .navbar a[href="#contato"] {
+body:has(#contato:target) .navbar a[href="#contato"],
+body:has(#cadastro:target) .navbar a [href="#cadastro"] {
     font-weight: 900;
 }
 
@@ -497,6 +498,11 @@ button:active {
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
+}
+
+.card-cadastro {
+  margin-top: 80px;
+  ;
 }
 
 .card h2 {
