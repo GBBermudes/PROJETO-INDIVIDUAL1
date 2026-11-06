@@ -477,7 +477,7 @@ button:active {
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-image: url('../assets/imgs/tela_fundo_cadastro_login.png');
   background-size: cover;
 }
 
@@ -490,21 +490,31 @@ button:active {
 .card {
   width: 50%;
   background-color: #e5e5e5;
+  margin-top: 80px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: rgb(66, 151, 92);
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
 }
 
-.card-cadastro {
-  margin-top: 80px;
-  ;
+.texto_cadastro {
+  margin-top: 100px;
+  margin-right: 150px;
+  margin-bottom: 100px;
+  color: white;
 }
 
+.titulo_cadastro {
+  border-bottom: 1px solid white;
+}
+
+.titulo_cadastro h1 {
+  margin-bottom: 30px;
+}
 .card h2 {
   margin: 0;
   font-size: 30px;
@@ -554,8 +564,8 @@ button:active {
   border-radius: 5px;
   font-weight: 600;
   font-size: 18px;
-  color: #fff;
-  background-color: #ED145B;
+  color: #000000;
+  background-color: #B7862B;
   width: 120px;
   height: 30px;
   align-self: center;
