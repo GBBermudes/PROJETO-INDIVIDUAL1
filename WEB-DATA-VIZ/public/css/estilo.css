@@ -454,9 +454,30 @@ button:active {
   font-size: 15px;
 }
 
+.footerrr {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  margin-top: 0;
+  background-color: rgba(16, 47, 48, 0.98);
+  height: 150px;
+  color: #D5DDD2;
+  font-size: 15px;
+}
+
+.footerrr h3 {
+  margin-top: 0;
+  margin-left: 100px;
+}
+
 .footerr h3 {
   margin-top: 0;
   margin-left: 100px;
+}
+
+.footerrr p {
+  margin-left: 100px;
+  line-height: 1.7;
 }
 
 .footerr p {
@@ -534,7 +555,7 @@ button:active {
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
+  border: 2px solid #42615D;
   text-align: center;
   border-radius: 10px;
   margin: 0;
