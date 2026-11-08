@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.header {
+    height: 80px;
+}
+
+.box-pai {
+    height: 80vh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    background-image: url(../assets/imgs/FUNDO_FORMULARIO.png);
+}
+
+.card-formulario {
+    background-color: rgb(203, 234, 219);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.card-formulario select {
+    height: 40px;
+    width: 400px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(236, 255, 239);
+    border: 1px solid rgb(118, 168, 143);
+}
+
+.card-formulario option {
+    font-size: larger;
+}
+
+.card-formulario p {
+    margin-bottom: 10px;
+}
+
+.card-formulario textarea {
+    width: 400px;
+    height: 50px;
+}
