@@ -6,6 +6,7 @@
 
 .header {
     height: 80px;
+    border-bottom: 2px solid rgb(232, 248, 242);
 }
 
 .box-pai {
@@ -13,11 +14,10 @@
     display: flex; 
     justify-content: center;
     align-items: center;
-    background-image: url(../assets/imgs/FUNDO_FORMULARIO.png);
 }
 
 .card-formulario {
-    background-color: rgb(203, 234, 219);
+    background-color: rgb(232, 248, 242);
     padding: 30px;
     border-radius: 10px;
 }
@@ -27,8 +27,6 @@
     width: 400px;
     border-radius: 10px;
     margin-bottom: 20px;
-    background-color: rgb(236, 255, 239);
-    border: 1px solid rgb(118, 168, 143);
 }
 
 .card-formulario option {
