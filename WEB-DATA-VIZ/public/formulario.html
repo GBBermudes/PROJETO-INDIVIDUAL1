@@ -26,19 +26,19 @@
             <p>Quantidade de peixes:</p><br>
             <input type="text" id="ipt_qtd_peixes">
             <p>Nota da pescaria (1 a 5):</p><br>
-            <input type="text" id="ipt_nota"><br>
-            <button onclick="registrar()">Registrar</button>
+            <input type="number" id="ipt_nota"><br>
+            <button onclick="cadastrar()">Registrar</button>
         </div>
     </div>
 </body>
 
 <script>
-    function registrar() {
+    function cadastrar() {
         var data = ipt_data.value;
         var local = ipt_local.value;
         var modalidade = ipt_modalidade.value;
         var qtd_peixes = Number(ipt_qtd_peixes.value);
-        var nota = ipt_nota.value;
+        var nota = Number(ipt_nota.value);
 
         if (data == "" || local == "" || modalidade == "" || qtd_peixes == undefined || nota == undefined) {
             alert("Todas as opções devem estar selecionadas")

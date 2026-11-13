@@ -8,9 +8,9 @@ function listar() {
     return database.executar(instrucao)
 }
 
-function cadastrar(tipo_pescaria, como_aproveitar, oque_mais_procura, frequencia_pescaria, frase) {
+function cadastrar(data, local, modalidade, qtd_peixes, nota) {
     var instrucao = `
-    INSERT INTO dados_formulario (tipo_pescaria, como_aproveitar, oque_mais_procura, frequencia_pescaria, frase) VALUES ('${tipo_pescaria}', '${como_aproveitar}', '${oque_mais_procura}', '${frequencia_pescaria}', '${frase}')
+    INSERT INTO dados_formulario (data, local, modalidade, qtd_peixes, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}', '${nota}')
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

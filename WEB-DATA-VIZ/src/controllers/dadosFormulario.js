@@ -2,25 +2,25 @@ var dadosFormularioModel = require("../models/dadosFormulario")
 
 function listar(req, res) {
     dadosFormularioModel.listar().then(function (resultado) {
-        res.status(200).jason(resultado);
+        res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
     })
 };
 
 function cadastrar(req, res) {
-    var tipo_pescaria = req.body.tipo_pescaria;
-    var como_aproveitar = req.body.como_aproveitar;
-    var oque_mais_procura = req.body.oque_mais_procura;
-    var frequencia_pescaria = req.body.frequencia_pescaria;
-    var frase = req.body.frase;
+    var data = req.body.data;
+    var local = req.body.local;
+    var modalidade = req.body.modalidade;
+    var qtd_peixes = req.body.qtd_peixes;
+    var nota = req.body.nota;
 
-    if (tipo_pescaria == undefined || como_aproveitar == undefined || oque_mais_procura == undefined || frequencia_pescaria == undefined || frase == undefined) {
+    if (data == undefined || local == undefined || modalidade == undefined || qtd_peixes == undefined || nota == undefined) {
         res.status(400).send("Algum esta undefined")
     }
 
-    dadosFormularioModel.cadastrar(tipo_pescaria, como_aproveitar, oque_mais_procura, frequencia_pescaria, frase).then(function (resposta) {
-        res.status(200).send("Tipo pescaria inserido com sucesso")
+    dadosFormularioModel.cadastrar(data, local, modalidade, qtd_peixes, nota).then(function (resposta) {
+        res.status(200).send("Registro inserido com sucesso")
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
     })
