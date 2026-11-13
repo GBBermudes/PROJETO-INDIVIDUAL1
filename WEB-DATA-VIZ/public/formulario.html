@@ -9,11 +9,31 @@
 </head>
     
 <body>
-    
+    <div class="pai">
+        <aside>
+            <h3>Diário de Samuela</h3>
+            <p>Registrar</p>
+            <p>Dashboard</p>
+        </aside>
+        <div class="formulario">
+            <h2>Registrar pescaria</h2>
+            <p>Data:</p><br>
+            <input type="date" id="ipt_data">
+            <p>Local:</p><br>
+            <input type="text" id="ipt_local">
+            <p>Modalidade:</p><br>
+            <input type="text" id="ipt_modalidade">
+            <p>Quantidade de peixes:</p><br>
+            <input type="text" id="ipt_qtd_peixes">
+            <p>Nota da pescaria (1 a 5):</p><br>
+            <input type="text" id="ipt_nota">
+            <button onclick="registrar()">Registrar</button>
+        </div>
+    </div>
 </body>
 
 <script>
-    function cadastrar() {
+    function registrar() {
         var tipo_pescaria = ipt_tipo_pescaria.value;
         var como_aproveitar = ipt_como_aproveitar.value;
         var oque_mais_procura = ipt_oque_mais_procura.value;
