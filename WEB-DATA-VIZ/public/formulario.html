@@ -7,28 +7,41 @@
     <link rel="stylesheet" href="css/formulario.css">
     <title>Diário de Pesca do Gabriel | formulario</title>
 </head>
-    
+
 <body>
     <div class="pai">
         <aside>
-            <h3>Diário de Samuela</h3>
-            <p>Registrar</p>
-            <p>Dashboard</p>
+            <div class="titulo-aside">
+                <h3>Diário de Samuela</h3>
+            </div>
+            <div class="menu-aside">
+                <p>Registrar</p>
+                <p>Dashboard</p>
         </aside>
-        <div class="formulario">
-            <h2>Registrar pescaria</h2>
-            <p>Data:</p><br>
-            <input type="date" id="ipt_data">
-            <p>Local:</p><br>
-            <input type="text" id="ipt_local">
-            <p>Modalidade:</p><br>
-            <input type="text" id="ipt_modalidade">
-            <p>Quantidade de peixes:</p><br>
-            <input type="text" id="ipt_qtd_peixes">
-            <p>Nota da pescaria (1 a 5):</p><br>
-            <input type="number" id="ipt_nota"><br>
-            <button onclick="cadastrar()">Registrar</button>
+        <div class="box-formulario">
+            <div class="formulario">
+                <h2>Registrar pescaria</h2>
+                <p>Data:</p><br>
+                <input type="date" id="ipt_data">
+                <p>Local:</p><br>
+                <input type="text" id="ipt_local">
+                <p>Modalidade:</p><br>
+                <input type="text" id="ipt_modalidade">
+                <p>Quantidade de peixes:</p><br>
+                <input type="text" id="ipt_qtd_peixes">
+                <p>Nota da pescaria (1 a 5):</p><br>
+                <select name="nota-pescaria" id="ipt_nota">
+                    <option value="" disabled selected>Selecione a nota</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select><br>
+                <button onclick="cadastrar()">Registrar</button>
+            </div>
         </div>
+
     </div>
 </body>
 
