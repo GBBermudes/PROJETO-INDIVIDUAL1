@@ -26,7 +26,7 @@
             <p>Quantidade de peixes:</p><br>
             <input type="text" id="ipt_qtd_peixes">
             <p>Nota da pescaria (1 a 5):</p><br>
-            <input type="text" id="ipt_nota">
+            <input type="text" id="ipt_nota"><br>
             <button onclick="registrar()">Registrar</button>
         </div>
     </div>
@@ -34,13 +34,13 @@
 
 <script>
     function registrar() {
-        var tipo_pescaria = ipt_tipo_pescaria.value;
-        var como_aproveitar = ipt_como_aproveitar.value;
-        var oque_mais_procura = ipt_oque_mais_procura.value;
-        var frequencia_pescaria = ipt_frequencia.value;
-        var frase = ipt_frase.value;
+        var data = ipt_data.value;
+        var local = ipt_local.value;
+        var modalidade = ipt_modalidade.value;
+        var qtd_peixes = Number(ipt_qtd_peixes.value);
+        var nota = ipt_nota.value;
 
-        if (tipo_pescaria == "" || como_aproveitar == "" || oque_mais_procura == "" || frequencia_pescaria == "" || frase == "") {
+        if (data == "" || local == "" || modalidade == "" || qtd_peixes == undefined || nota == undefined) {
             alert("Todas as opções devem estar selecionadas")
         } else {
             fetch("/dadosFormulario/cadastrar", {
@@ -49,11 +49,11 @@
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    tipo_pescaria: tipo_pescaria,
-                    como_aproveitar: como_aproveitar,
-                    oque_mais_procura: oque_mais_procura,
-                    frequencia_pescaria: frequencia_pescaria,
-                    frase: frase
+                    data: data,
+                    local: local,
+                    modalidade: modalidade,
+                    qtd_peixes: qtd_peixes,
+                    nota: nota
                 }),
             })
         }
