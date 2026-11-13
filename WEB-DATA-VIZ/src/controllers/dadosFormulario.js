@@ -16,7 +16,8 @@ function cadastrar(req, res) {
     var nota = req.body.nota;
 
     if (data == undefined || local == undefined || modalidade == undefined || qtd_peixes == undefined || nota == undefined) {
-        res.status(400).send("Algum esta undefined")
+        res.status(400).send("Algum esta undefined");
+        return;
     }
 
     dadosFormularioModel.cadastrar(data, local, modalidade, qtd_peixes, nota).then(function (resposta) {

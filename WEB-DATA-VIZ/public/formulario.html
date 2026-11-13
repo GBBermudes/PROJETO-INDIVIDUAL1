@@ -40,7 +40,7 @@
         var qtd_peixes = Number(ipt_qtd_peixes.value);
         var nota = Number(ipt_nota.value);
 
-        if (data == "" || local == "" || modalidade == "" || qtd_peixes == undefined || nota == undefined) {
+        if (data == "" || local == "" || modalidade == "" || qtd_peixes == 0 || nota == 0) {
             alert("Todas as opções devem estar selecionadas")
         } else {
             fetch("/dadosFormulario/cadastrar", {

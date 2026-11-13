@@ -10,7 +10,7 @@ function listar() {
 
 function cadastrar(data, local, modalidade, qtd_peixes, nota) {
     var instrucao = `
-    INSERT INTO dados_formulario (data, local, modalidade, qtd_peixes, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}', '${nota}')
+    INSERT INTO dados_formulario (data_teste, local_teste, modalidade, qtd_peixe, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}', '${nota}')
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
