@@ -1,3 +1,4 @@
+
 var database = require("../database/config")
 
 function listar() {
@@ -30,15 +31,29 @@ function listarMaiorPesca() {
 
 function cadastrar(data, local, modalidade, qtd_peixes, nota) {
     var instrucao = `
-    INSERT INTO dados_formulario (data_teste, local_teste, modalidade, qtd_peixe, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}', '${nota}')
+    INSERT INTO dados_dashboard (dataa, fk_local_pesca , fk_modalidade, qtd_peixe, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}', '${nota}')
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
+}
+
+function cadastrarLocalPesca(nome_local_pesca) {
+    var instrucao = `INSERT INTO local_pesca (nome) VALUES ('${nome_local_pesca}')`;
+    console.log("Executando a intrução SQL: \n" + instrucao);
+    return database.executar(instrucao)
+}
+
+function listarLocalPesca() {
+    var instrucao = `SELECT * FROM local_pesca;`;
+    console.log("Executando a instrucao SQL: \n" + instrucao);
+    return database.executar(instrucao)
 }
 
 
 module.exports = {
     cadastrar,
     listar,
-    listarMaiorPesca
+    listarMaiorPesca,
+    cadastrarLocalPesca,
+    listarLocalPesca
 }

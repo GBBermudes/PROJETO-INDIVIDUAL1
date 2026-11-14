@@ -19,31 +19,33 @@
                 <a href="dashboard.html">
                     <span class="bt-dashboard">Dashboard</span>
                 </a>
-                <span class="bt-sair">Sair</span> 
+                <span class="bt-sair">Sair</span>
             </div>
         </div>
-            
+
         <div class="box-formulario">
             <div class="formulario">
                 <h1 class="young-serif-regular">Registrar pescaria no diário</h2>
-                <p>Data:</p><br>
-                <input type="date" id="ipt_data">
-                <p>Local:</p><br>
-                <input type="text" id="ipt_local">
-                <p>Modalidade:</p><br>
-                <input type="text" id="ipt_modalidade">
-                <p>Quantidade de peixes:</p><br>
-                <input type="text" id="ipt_qtd_peixes">
-                <p>Nota da pescaria (1 a 5):</p><br>
-                <select name="nota-pescaria" id="ipt_nota">
-                    <option value="" disabled selected>Selecione a nota</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select><br>
-                <button onclick="cadastrar()">Registrar</button>
+                    <p>Data:</p><br>
+                    <input type="date" id="ipt_data">
+                    <p>Local:</p> <button onclick="cadastrarLocalPesca()">Novo Local</button><br>
+                    <select name="selecione-local" id="selecione_local">
+                        <option value="">Selecione o local</option>
+                    </select>
+                    <p>Modalidade:</p><br>
+                    <input type="text" id="ipt_modalidade">
+                    <p>Quantidade de peixes:</p><br>
+                    <input type="text" id="ipt_qtd_peixes">
+                    <p>Nota da pescaria (1 a 5):</p><br>
+                    <select name="nota-pescaria" id="ipt_nota">
+                        <option value="" disabled selected>Selecione a nota</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select><br>
+                    <button onclick="cadastrar()">Registrar</button>
             </div>
         </div>
 
@@ -51,9 +53,25 @@
 </body>
 
 <script>
+    function cadastrarLocalPesca() {
+        var nome_local_pesca = prompt("Insira o novo local")
+
+        alert("Registro realizado com sucesso!")
+        fetch("/dadosFormulario/cadastrarLocalPesca", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nome_local_pesca: nome_local_pesca
+            }),
+        });
+        location.reload()
+    };
+
     function cadastrar() {
         var data = ipt_data.value;
-        var local = ipt_local.value;
+        var local = selecione_local.value;
         var modalidade = ipt_modalidade.value;
         var qtd_peixes = Number(ipt_qtd_peixes.value);
         var nota = Number(ipt_nota.value);
@@ -79,6 +97,24 @@
             })
         }
     }
+
+    fetch("/dadosFormulario/listarLocalPesca")
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (locais) {
+            var select = document.getElementById("selecione_local");
+
+            locais.forEach(function (local) {
+                var opcao = document.createElement("option");
+                opcao.value = local.id;
+                opcao.textContent = local.nome;
+                select.appendChild(opcao);
+            });
+        })
+        .catch(function (erro) {
+            console.log("Erro:", erro);
+        });
 </script>
 
 </html>

@@ -15,4 +15,12 @@ router.get("/listarMaiorPesca", function (req, res) {
     dadosFormularioController.listarMaiorPesca(req, res);
 })
 
+router.post("/cadastrarLocalPesca", function (req, res) {
+    dadosFormularioController.cadastrarLocalPesca(req, res)
+})
+
+router.get("/listarLocalPesca", function (req, res) {
+    dadosFormularioController.listarLocalPesca(req, res)
+})
+
 module.exports = router;
