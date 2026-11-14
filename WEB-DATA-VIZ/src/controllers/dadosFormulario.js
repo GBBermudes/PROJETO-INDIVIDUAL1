@@ -8,6 +8,14 @@ function listar(req, res) {
     })
 };
 
+function listarMaiorPesca(req, res) {
+    dadosFormularioModel.listarMaiorPesca().then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
 function cadastrar(req, res) {
     var data = req.body.data;
     var local = req.body.local;
@@ -30,5 +38,6 @@ function cadastrar(req, res) {
 
 module.exports = {
     listar,
-    cadastrar
+    cadastrar,
+    listarMaiorPesca
 }

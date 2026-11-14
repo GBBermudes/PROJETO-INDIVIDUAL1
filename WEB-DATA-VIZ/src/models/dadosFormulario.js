@@ -14,6 +14,20 @@ function listar() {
     return database.executar(instrucao)
 }
 
+function listarMaiorPesca() {
+    var instrucao = `
+    SELECT 
+        data_teste,
+        qtd_peixe
+    FROM dados_formulario
+    ORDER BY qtd_peixe DESC
+    LIMIT 1;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao)
+}
+
 function cadastrar(data, local, modalidade, qtd_peixes, nota) {
     var instrucao = `
     INSERT INTO dados_formulario (data_teste, local_teste, modalidade, qtd_peixe, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}', '${nota}')
@@ -25,5 +39,6 @@ function cadastrar(data, local, modalidade, qtd_peixes, nota) {
 
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    listarMaiorPesca
 }
