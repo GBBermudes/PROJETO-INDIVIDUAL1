@@ -1,74 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Junge&family=Kapakana:wght@300..400&family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+
+.junge-regular {
+  font-family: "Junge", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.young-serif-regular {
+  font-family: "Young Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cormorant-sc-bold {
+  font-family: "Cormorant SC", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.hanken {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
 }
 
-/* Div total */
-.pai {
-    display: flex;
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Hanken Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
-/* Side Bar */
-aside {
-    background-color: aquamarine;
-    height: 100vh;
-    width: 15vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/* BOX PAI */
 
-.titulo-aside {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20vh;
-}
-
-.menu-aside {
-    position: absolute;
+.box-pai {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
-/* Formulario */
+/* NAV BAR */
 
-.box-formulario {
+.navbar {
     display: flex;
-    height: 100vh;
-    width: 85vw;
-    background-color: aqua;
-    justify-content: center;
+    height: 85px;
+    width: calc(100% - 20px);
+    background-color: rgb(2, 54, 26);
+    border-radius: 25px;
+    margin: 10px;
     align-items: center;
 }
 
-.formulario {
-    background-color: aliceblue;
-    padding: 20px;
-    width: 60%;
-    height: 70%;
-    display: grid;
-    flex-direction: column;
+.titulo-navbar {
+    display: flex;
+    width: 20vw;
     justify-content: center;
     align-items: center;
+    margin-left: 10px;
 }
 
-.formulario h2 {
-    font-size: 45px;
+.titulo-navbar h1 {
+    color: white;
 }
 
-.formulario p {
-    font-size: 17px;
-    margin-bottom: -40px;
+.menu-navbar {
+    display: flex;
+    width: 80vw;
+    justify-content: flex-end;
+    gap: 40px;
+    margin-right: 70px;
+    color: white;
 }
 
-.formulario input {
-    height: 40px;
+.bt-sair {
+    margin-left: 60px;
+    padding: 13px 15px;
+    border-radius: 15px;
+    font-size: 19px;
 }
 
-.formulario select {
-    height: 45px;
+.bt-sair:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.bt-registrar {
+    color: rgb(2, 54, 26);
+    background-color: rgb(218, 165, 87);
+    padding: 13px 15px;
+    border-radius: 15px;
+    font-size: 19px;
+}
+
+.bt-dashboard {
+    padding: 13px 15px;
+    border-radius: 15px;
+    font-size: 19px;
 }
