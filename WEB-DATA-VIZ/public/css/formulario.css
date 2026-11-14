@@ -80,9 +80,15 @@ body {
     display: flex;
     width: 80vw;
     justify-content: flex-end;
+    align-items: center;
     gap: 40px;
     margin-right: 70px;
     color: white;
+}
+
+.menu-navbar a {
+    color: white;
+    text-decoration: none;
 }
 
 .bt-sair {
@@ -127,7 +133,7 @@ body {
 
 .formulario {
     background-color: white;
-    border: solid 1px rgb(187, 212, 187);
+    border: solid 1px rgb(211, 233, 211);
     padding: 30px;
     height: 80%;
     width: 35%;

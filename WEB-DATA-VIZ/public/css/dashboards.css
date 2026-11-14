@@ -1,35 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Junge&family=Kapakana:wght@300..400&family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+
+.junge-regular {
+  font-family: "Junge", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.young-serif-regular {
+  font-family: "Young Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cormorant-sc-bold {
+  font-family: "Cormorant SC", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.hanken {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
 }
 
-/* Div total */
-.pai {
-    display: flex;
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Hanken Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
-/* Side Bar */
-aside {
-    background-color: aquamarine;
-    height: 100vh;
-    width: 15vw;
+body {
+    background-color: rgb(236, 238, 236);
+}
+/* BOX PAI */
+
+.box-pai {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+/* NAV BAR */
+
+.navbar {
+    display: flex;
+    height: 11vh;
+    width: calc(100% - 20px);
+    background-color: rgb(2, 54, 26);
+    border-radius: 25px;
+    margin: 10px;
     align-items: center;
 }
 
-.titulo-aside {
+.titulo-navbar {
+    display: flex;
+    width: 20vw;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.titulo-navbar h1 {
+    color: white;
+}
+
+.menu-navbar {
+    display: flex;
+    width: 80vw;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+    margin-right: 70px;
+    color: white;
+}
+
+.menu-navbar a {
+    text-decoration: none;
+    color: white;
+}
+
+.bt-sair {
+    margin-left: 60px;
+    padding: 13px 15px;
+    border-radius: 15px;
+    font-size: 19px;
+}
+
+.bt-sair:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.bt-registrar {
+    cursor: pointer;
+    padding: 13px 15px;
+    border-radius: 15px;
+    font-size: 19px;
+}
+
+.bt-dashboard {
+    color: rgb(2, 54, 26);
+    background-color: rgb(218, 165, 87);
+    padding: 13px 15px;
+    border-radius: 15px;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.bt-registrar:hover {
+    font-weight: 800;
+}
+
+/* BOX DASHBOARD */
+
+.box-dashboard {
+    display: flex;
+    flex-direction: column;
+}
+
+/* BOX KPI */
+
+.box-kpi {
     display: flex;
     justify-content: center;
+    gap: 30px;
+    margin: 0 10px;
     align-items: center;
     height: 20vh;
 }
 
-.menu-aside {
-    position: absolute;
+.kpi {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90%;
+    width: 460px;
+    background-color: white;
+    border-radius: 20px;
+    border: solid 1px rgb(211, 233, 211);
+}
+
+.kpi p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: "Hanken Grotesk", sans-serif;
+}
+
+.kpi span {
+    font-family: "Hanken Grotesk", sans-serif;
+}
+
+.kpi-qtd-peixes span {
+    font-size: 55px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+.kpi-local-favorito span {
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: -10px;
+}
+
+/* BOX GRAFICO */
+
+.box-grafico {
+    background-color: aqua;
+    height: 45vh;
+}
+
+/* BOX HISTORICO REGISTROS */
+
+.box-historico-registro {
+    background-color: green;
+    height: 21.3vh;
 }

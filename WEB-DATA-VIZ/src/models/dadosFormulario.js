@@ -20,7 +20,7 @@ function listarMaiorPesca() {
         data_teste,
         qtd_peixe
     FROM dados_formulario
-    ORDER BY qtd_peixe DESC
+    ORDER BY ID DESC
     LIMIT 1;
     `;
 

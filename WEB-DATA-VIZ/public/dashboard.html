@@ -9,18 +9,34 @@
 </head>
 
 <body>
-    <div class="pai">
-        <aside>
-            <div class="titulo-aside">
-                <h3>Diário de Samuela</h3>
+    <div class="box-pai">
+        <div class="navbar">
+            <div class="hanken titulo-navbar">
+                <h1>Diário de Samuela</h3>
             </div>
-            <div class="menu-aside">
-                <p>Registrar</p>
-                <p>Dashboard</p>
-        </aside>
+            <div class="hanken menu-navbar">
+                <a href="formulario.html">
+                    <span class="bt-registrar">Registrar</span>
+                </a>
+                <span class="bt-dashboard">Dashboard</span>
+                <span class="bt-sair">Sair</span> 
+            </div>
+        </div>
         <div class="box-dashboard">
             <div class="box-kpi">
+                <div class="kpi kpi-qtd-peixes">
+                    <p>Quatidade de peixes na ultima pescaria:</p><br>
+                    <span id="qtd_peixe">40</span>
+                    <p style="color: green;">5 a mais que na anterior</p>
+                </div>
+                <div class="kpi kpi-local-favorito">
+                    <p>Local que mais costuma pescar:</p>
+                    <span id="local_mais_costuma_pescar">Canal de Bertioga</span>
+                </div>
+                <div class="kpi kpi-modalidade-favorita"></div>
             </div>
+            <div class="box-grafico"></div>
+            <div class="box-historico-registro"></div>
         </div>
     </div>
 </body>
