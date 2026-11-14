@@ -49,11 +49,24 @@ function listarLocalPesca() {
     return database.executar(instrucao)
 }
 
+function listarModalidadesPesca() {
+    var instrucao = `SELECT * FROM modalidade;`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao)
+}
+
+function cadastrarModalidadePesca(nome_modalidade_pesca) {
+    var instrucao = `INSERT INTO modalidade (nome) VALUES ('${nome_modalidade_pesca}')`;
+    console.log("Executando a instrução SQL: \n" + instrucao)
+    return database.executar(instrucao)
+}
 
 module.exports = {
     cadastrar,
     listar,
     listarMaiorPesca,
     cadastrarLocalPesca,
-    listarLocalPesca
+    listarLocalPesca,
+    listarModalidadesPesca,
+    cadastrarModalidadePesca
 }

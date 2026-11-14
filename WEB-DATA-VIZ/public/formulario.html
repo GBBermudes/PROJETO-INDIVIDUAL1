@@ -28,12 +28,14 @@
                 <h1 class="young-serif-regular">Registrar pescaria no diário</h2>
                     <p>Data:</p><br>
                     <input type="date" id="ipt_data">
-                    <p>Local:</p> <button onclick="cadastrarLocalPesca()">Novo Local</button><br>
+                    <p>Local:</p> <button class="bt-novo-local" onclick="cadastrarLocalPesca()">Novo Local</button><br>
                     <select name="selecione-local" id="selecione_local">
                         <option value="">Selecione o local</option>
                     </select>
-                    <p>Modalidade:</p><br>
-                    <input type="text" id="ipt_modalidade">
+                    <p>Modalidade:</p> <button class="bt-nova-modalidade" onclick="cadastrarModalidadePesca()">Nova Modalidade</button> <br>
+                    <select name="selecione-modalidade" id="selecione_modalidade">
+                        <option value="">Selecione a modalidade</option>
+                    </select>
                     <p>Quantidade de peixes:</p><br>
                     <input type="text" id="ipt_qtd_peixes">
                     <p>Nota da pescaria (1 a 5):</p><br>
@@ -45,7 +47,9 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select><br>
-                    <button onclick="cadastrar()">Registrar</button>
+                    <div class="botao-formulario">
+                        <button onclick="cadastrar()">Registrar</button>
+                    </div>
             </div>
         </div>
 
@@ -69,10 +73,28 @@
         location.reload()
     };
 
+    function cadastrarModalidadePesca() {
+        var nome_modalidade_pesca = prompt("Insira a nova modalidade: ")
+
+        alert("Registro realizado com sucesso!")
+        fetch("/dadosFormulario/cadastrarModalidadePesca", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nome_modalidade_pesca: nome_modalidade_pesca
+            }),
+        });
+        location.reload()
+    };
+
+
+
     function cadastrar() {
         var data = ipt_data.value;
         var local = selecione_local.value;
-        var modalidade = ipt_modalidade.value;
+        var modalidade = selecione_modalidade.value;
         var qtd_peixes = Number(ipt_qtd_peixes.value);
         var nota = Number(ipt_nota.value);
 
@@ -109,6 +131,24 @@
                 var opcao = document.createElement("option");
                 opcao.value = local.id;
                 opcao.textContent = local.nome;
+                select.appendChild(opcao);
+            });
+        })
+        .catch(function (erro) {
+            console.log("Erro:", erro);
+        });
+
+    fetch("/dadosFormulario/listarModalidadesPesca")
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (modalidades) {
+            var select = document.getElementById("selecione_modalidade");
+
+            modalidades.forEach(function (modalidade) {
+                var opcao = document.createElement("option");
+                opcao.value = modalidade.id;
+                opcao.textContent = modalidade.nome;
                 select.appendChild(opcao);
             });
         })

@@ -59,10 +59,35 @@ function listarLocalPesca(req, res) {
     })
 }
 
+function listarModalidadesPesca(req, res) {
+
+    dadosFormularioModel.listarModalidadesPesca().then(function (resposta) {
+        res.status(200).json(resposta)
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function cadastrarModalidadePesca(req, res) {
+    var nome_modalidade_pesca = req.body.nome_modalidade_pesca
+    if (nome_modalidade_pesca == undefined) {
+    res.status(400).send("Algum esta undefined");
+    return;
+    }
+
+    dadosFormularioModel.cadastrarModalidadePesca(nome_modalidade_pesca).then(function (resposta) {
+        res.status(200).send("Registro inserido com sucesso")
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
 module.exports = {
     listar,
     cadastrar,
     listarMaiorPesca,
     cadastrarLocalPesca,
-    listarLocalPesca
+    listarLocalPesca,
+    listarModalidadesPesca,
+    cadastrarModalidadePesca
 }
