@@ -53,9 +53,12 @@
         var qtd_peixes = Number(ipt_qtd_peixes.value);
         var nota = Number(ipt_nota.value);
 
-        if (data == "" || local == "" || modalidade == "" || qtd_peixes == 0 || nota == 0) {
+        if (data == "" || local == "" || modalidade == "" || qtd_peixes === "" || nota == "") {
             alert("Todas as opções devem estar selecionadas")
+        } else if (qtd_peixes < 0) {
+            alert("Insira uma quantidade de peixes validos")
         } else {
+            alert("Registro realizado com sucesso!")
             fetch("/dadosFormulario/cadastrar", {
                 method: "POST",
                 headers: {

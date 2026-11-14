@@ -2,7 +2,13 @@ var database = require("../database/config")
 
 function listar() {
     var instrucao = `
-        SELECT * FROM dados_formulario
+        SELECT
+	        local_teste as lugar,
+	        COUNT(local_teste) as qtd_vezes
+        FROM dados_formulario
+        GROUP BY local_teste
+        ORDER BY COUNT(local_teste) DESC
+        LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao)
