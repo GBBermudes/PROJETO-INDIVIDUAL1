@@ -31,4 +31,8 @@ router.post("/cadastrarModalidadePesca", function (req, res) {
     dadosFormularioController.cadastrarModalidadePesca(req, res)
 })
 
+router.get("/listarModalidadeProdutiva", function (req, res) {
+    dadosFormularioController.listarModalidadeProdutiva(req, res)
+})
+
 module.exports = router;

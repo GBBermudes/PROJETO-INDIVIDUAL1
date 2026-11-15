@@ -4,11 +4,14 @@ var database = require("../database/config")
 function listar() {
     var instrucao = `
         SELECT
-	        local_teste as lugar,
-	        COUNT(local_teste) as qtd_vezes
-        FROM dados_formulario
-        GROUP BY local_teste
-        ORDER BY COUNT(local_teste) DESC
+		    l.nome as 'local',
+            ROUND(AVG(d.qtd_peixe), 1) media_peixes,
+            COUNT(l.nome) qtd_idas
+	    FROM dados_dashboard d
+	    JOIN local_pesca l
+		    ON d.fk_local_pesca = l.id
+	    GROUP BY l.nome
+        ORDER BY AVG(d.qtd_peixe) DESC
         LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -17,12 +20,15 @@ function listar() {
 
 function listarMaiorPesca() {
     var instrucao = `
-    SELECT 
-        data_teste,
-        qtd_peixe
-    FROM dados_formulario
-    ORDER BY ID DESC
-    LIMIT 1;
+        SELECT 
+		    d.qtd_peixe,
+            DATE_FORMAT(d.dataa, '%d/%m/%Y') as 'Data',
+            l.nome as 'Local'
+	    FROM dados_dashboard d
+	    JOIN local_pesca l
+		    ON d.fk_local_pesca = l.id
+	    ORDER BY qtd_peixe DESC
+        LIMIT 1;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -61,6 +67,24 @@ function cadastrarModalidadePesca(nome_modalidade_pesca) {
     return database.executar(instrucao)
 }
 
+function listarModalidadeProdutiva() {
+    var instrucao = `    
+        SELECT
+		    m.nome Modalidade,
+            ROUND(AVG(d.qtd_peixe), 1) media_peixes,
+            COUNT(m.nome) qtd_pescarias
+	    FROM modalidade m
+        JOIN dados_dashboard d
+		    ON d.fk_modalidade = m.id
+	    GROUP BY m.nome
+        ORDER BY AVG(d.qtd_peixe) DESC
+        LIMIT 1;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao)
+    return database.executar(instrucao)
+}
+
 module.exports = {
     cadastrar,
     listar,
@@ -68,5 +92,6 @@ module.exports = {
     cadastrarLocalPesca,
     listarLocalPesca,
     listarModalidadesPesca,
-    cadastrarModalidadePesca
+    cadastrarModalidadePesca,
+    listarModalidadeProdutiva
 }
