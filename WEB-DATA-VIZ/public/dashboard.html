@@ -25,15 +25,20 @@
         <div class="box-dashboard">
             <div class="box-kpi">
                 <div class="kpi kpi-qtd-peixes">
-                    <p>Quatidade de peixes na ultima pescaria:</p><br>
-                    <span id="qtd_peixe">40</span>
-                    <p style="color: green;">5 a mais que na anterior</p>
+                    <p>Recorde pessoal</p><br>
+                    <span id="qtd_peixe"></span>
+                    <p class="detalhes"><span id="data_recorde_pessoal"></span>&nbsp; - &nbsp;<span id="local_recorde_pessoal"></span></p>
                 </div>
                 <div class="kpi kpi-local-favorito">
-                    <p>Local que mais costuma pescar:</p>
-                    <span id="local_mais_costuma_pescar">Canal de Bertioga</span>
+                    <p>Local mais produtivo:</p>
+                    <span id="local_mais_produtivo"></span>
+                    <p><span id="media_peixes_local"></span>&nbsp;peixes/pescaria&nbsp;-&nbsp;<span id="qtd_pescarias_local"></span>&nbsp;pescarias</p>
                 </div>
-                <div class="kpi kpi-modalidade-favorita"></div>
+                <div class="kpi kpi-modalidade-favorita">
+                    <p>Modalidade mais produtiva</p><br>
+                    <span id="modalidade_mais_produtiva"></span><br>
+                    <p><span id="media_peixes_modalidade"></span>&nbsp;peixes/pescaria -&nbsp;<span id="total_pescarias_modalidade"></span>&nbsp;pescarias</p>
+                </div>
             </div>
             <div class="box-grafico"></div>
             <div class="box-historico-registro"></div>
@@ -47,9 +52,12 @@
             return resposta.json();
         })
         .then(function (dados) {
-            var kpi1 = dados[0]
+            var kpi2 = dados[0]
 
-            document.getElementById("local_mais_costuma_pescar").innerText = kpi1.lugar;
+            document.getElementById("local_mais_produtivo").innerText = kpi2.local;
+            document.getElementById("media_peixes_local").innerText = kpi2.media_peixes;
+            document.getElementById("qtd_pescarias_local").innerText = kpi2.qtd_idas;
+
         });
     
     fetch("/dadosFormulario/listarMaiorPesca")
@@ -57,9 +65,23 @@
             return resposta.json();
         })
         .then(function (dados) {
-            var kpi2 = dados[0]
+            var kpi1 = dados[0]
 
-            document.getElementById("qtd_peixe").innerText = kpi2.qtd_peixe
+            document.getElementById("qtd_peixe").innerText = kpi1.qtd_peixe;
+            document.getElementById("data_recorde_pessoal").innerText = kpi1.Data;
+            document.getElementById("local_recorde_pessoal").innerText = kpi1.Local;
+        });
+
+    fetch("/dadosFormulario/listarModalidadeProdutiva")
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (dados) {
+            var kpi3 = dados[0]
+
+            document.getElementById("modalidade_mais_produtiva").innerText = kpi3.Modalidade;
+            document.getElementById("media_peixes_modalidade").innerText = kpi3.media_peixes;
+            document.getElementById("total_pescarias_modalidade").innerText = kpi3.qtd_pescarias;
         })
 </script>
 
