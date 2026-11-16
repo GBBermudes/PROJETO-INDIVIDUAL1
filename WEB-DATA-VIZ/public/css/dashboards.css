@@ -193,13 +193,44 @@ body {
 /* BOX GRAFICO */
 
 .box-grafico {
-    background-color: aqua;
-    height: 45vh;
+    display: flex;
+    margin: 0 22px;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    gap: 40px;
+}
+
+.grafico-1 {
+    position: relative;
+    height: 100%;
+    width: 900px;
+    background-color: white;
+    border-radius: 20px;
+    border: solid 1px rgb(211, 233, 211);
+}
+
+.grafico-1 p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: "Hanken Grotesk", sans-serif;
+}
+
+.area-grafico-1 {
+    height: 85%;
+}
+
+.grafico-2 {
+    height: 100%;
+    width: 450px;
+    background-color: white;
+    border-radius: 20px;
+    border: solid 1px rgb(211, 233, 211);
 }
 
 /* BOX HISTORICO REGISTROS */
 
 .box-historico-registro {
     background-color: green;
-    height: 21.3vh;
+    height: 26.4vh;
 }

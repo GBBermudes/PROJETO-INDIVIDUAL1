@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboards.css">
     <title>Diário de Pesca do Gabriel | formulario</title>
+    
 </head>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
 <body>
     <div class="box-pai">
         <div class="navbar">
@@ -40,13 +41,46 @@
                     <p><span id="media_peixes_modalidade"></span>&nbsp;peixes/pescaria -&nbsp;<span id="total_pescarias_modalidade"></span>&nbsp;pescarias</p>
                 </div>
             </div>
-            <div class="box-grafico"></div>
+            <div class="box-grafico">
+                <div class="grafico-1">
+                    <p>Quantidade de peixes nas pescarias</p><br>
+                    <div class="area-grafico-1">
+                        <canvas id="grafico_qtd_peixes"></canvas>
+                    </div>
+                </div>
+                <div class="grafico-2"></div>
+            </div>
             <div class="box-historico-registro"></div>
         </div>
     </div>
 </body>
 
 <script>
+    const ctx = document.getElementById('grafico_qtd_peixes');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['10/12/2007', '11/23/2007', '12/12/2007'],
+            datasets: [{
+                label: 'Quantidade Peixes',
+                data: [10, 20, 15]
+            }] 
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+
+            }
+        }
+    })
+
     fetch("/dadosFormulario/listar") 
         .then(function (resposta) {
             return resposta.json();
@@ -83,6 +117,8 @@
             document.getElementById("media_peixes_modalidade").innerText = kpi3.media_peixes;
             document.getElementById("total_pescarias_modalidade").innerText = kpi3.qtd_pescarias;
         })
+    
+    
 </script>
 
 </html>
