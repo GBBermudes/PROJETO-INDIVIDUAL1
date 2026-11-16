@@ -79,7 +79,7 @@ function listarModalidadesPesca(req, res) {
 function cadastrarModalidadePesca(req, res) {
     var nome_modalidade_pesca = req.body.nome_modalidade_pesca
     if (nome_modalidade_pesca == undefined) {
-    res.status(400).send("Algum esta undefined");
+    res.status(400).send("Modalidade esta undefined");
     return;
     }
 
@@ -99,6 +99,28 @@ function listarModalidadeProdutiva(req, res) {
     })
 }
 
+function cadastrarMeta(req ,res) {
+    var meta = req.body.meta
+    if (meta == undefined) {
+        res.status(400).send("Meta esta undefined");
+        return
+    }
+
+        dadosFormularioModel.cadastrarMeta(meta).then(function (resposta) {
+        res.status(200).send("Registro inserido com sucesso")
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
+function listarMeta(req,res){
+    dadosFormularioModel.listarMeta().then(function (resposta) {
+        res.status(200).json(resposta)
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
 module.exports = {
     listar,
     cadastrar,
@@ -108,5 +130,7 @@ module.exports = {
     listarModalidadesPesca,
     cadastrarModalidadePesca,
     listarModalidadeProdutiva,
-    listarPeixesPorMes
+    listarPeixesPorMes,
+    cadastrarMeta,
+    listarMeta
 }

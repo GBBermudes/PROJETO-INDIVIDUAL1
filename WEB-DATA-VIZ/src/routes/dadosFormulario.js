@@ -39,4 +39,12 @@ router.get("/listarPeixesPorMes", function (req, res) {
     dadosFormularioController.listarPeixesPorMes(req,res)
 })
 
+router.post("/cadastrarMeta", function (req,res) {
+    dadosFormularioController.cadastrarMeta(req,res)
+})
+
+router.get("/listarMeta", function(req,res) {
+    dadosFormularioController.listarMeta(req,res)
+})
+
 module.exports = router;

@@ -47,7 +47,8 @@
             </div>
             <div class="box-grafico">
                 <div class="grafico-1">
-                    <p>Quantidade de peixes por mes (2026)</p><br>
+                    <p>Quantidade de peixes por mes (2026)</p><button class="bt-meta" onclick="cadastrarMeta()">Definir
+                        Meta</button><br>
                     <div class="area-grafico-1">
                         <canvas id="grafico_qtd_peixes"></canvas>
                     </div>
@@ -65,78 +66,86 @@
     var lista_acima = []
     var lista_abaixo = []
     var lista_meta = []
-    var meta = 25
+    var meta = 0
 
     const ctx = document.getElementById('grafico_qtd_peixes');
 
-
-    fetch("/dadosFormulario/listarPeixesPorMes")
+    fetch("/dadosFormulario/listarMeta")
         .then(function (resposta) {
             return resposta.json();
         })
         .then(function (dados) {
-            console.log(dados)
+            meta = Number(dados[0].meta)
+            fetch("/dadosFormulario/listarPeixesPorMes")
+                .then(function (resposta) {
+                    return resposta.json();
+                })
+                .then(function (dados) {
 
-            for (let i = 0; i < dados.length; i++) {
-                lista_meses.push(dados[i].Mes)
-                lista_meta.push(meta)
 
-                if (dados[i].Total < meta) {
-                    lista_abaixo.push(dados[i].Total)
-                    lista_acima.push(null)
-                } else {
-                    lista_acima.push(dados[i].Total)
-                    lista_abaixo.push(null)
-                }
 
-            }
+                    for (let i = 0; i < dados.length; i++) {
+                        lista_meses.push(dados[i].Mes)
+                        lista_meta.push(meta)
 
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: lista_meses,
-                    datasets: [{
-                        label: 'Abaixo da meta',
-                        data: lista_abaixo,
-                        backgroundColor: 'red',
-                    },{
-                        label: 'Acima da meta',
-                        data: lista_acima,
-                        backgroundColor: 'green'
-                    },{
-                        type: 'line',
-                        label: 'Meta',
-                        data: lista_meta,
-                        borderColor: 'orange',
-                        borderDash: [6, 6],
-                        pointRadius: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            stacked: true,
-                            title: {
-                                display: true,
-                                text: 'Quantidade de peixes'
-                            }
-                        },
-                        x: {
-                            stacked: true,
-                            title: {
-                                display: true,
-                                text: 'Meses'
-                            }
+                        if (dados[i].Total < meta) {
+                            lista_abaixo.push(dados[i].Total)
+                            lista_acima.push(null)
+                        } else {
+                            lista_acima.push(dados[i].Total)
+                            lista_abaixo.push(null)
                         }
-                    },
-                    plugins: {
 
                     }
-                }
-            })
+
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: lista_meses,
+                            datasets: [{
+                                label: 'Abaixo da meta',
+                                data: lista_abaixo,
+                                backgroundColor: 'red',
+                            }, {
+                                label: 'Acima da meta',
+                                data: lista_acima,
+                                backgroundColor: 'green'
+                            }, {
+                                type: 'line',
+                                label: 'Meta',
+                                data: lista_meta,
+                                borderColor: 'orange',
+                                borderDash: [6, 6],
+                                pointRadius: 0
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    stacked: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Quantidade de peixes'
+                                    }
+                                },
+                                x: {
+                                    stacked: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Meses'
+                                    }
+                                }
+                            },
+                            plugins: {
+
+                            }
+                        }
+                    })
+                })
+
         })
 
     fetch("/dadosFormulario/listar")
@@ -175,6 +184,33 @@
             document.getElementById("media_peixes_modalidade").innerText = kpi3.media_peixes;
             document.getElementById("total_pescarias_modalidade").innerText = kpi3.qtd_pescarias;
         })
+
+    function cadastrarMeta() {
+        var meta = Number(prompt("Insira sua meta: "))
+
+        if (meta <= 0) {
+            alert("Insira uma meta válida")
+        } else {
+
+            fetch("/dadosFormulario/cadastrarMeta", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    meta: meta
+                }),
+
+            })
+            .then(function (resposta) {
+                if (resposta) {
+                    location.reload()
+                } else {
+                    alert("Reload Falhou")
+                }
+            })
+        }
+    }
 
 
 </script>

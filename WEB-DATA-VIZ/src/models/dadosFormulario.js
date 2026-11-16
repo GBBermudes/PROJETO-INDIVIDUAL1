@@ -91,6 +91,18 @@ function listarPeixesPorMes() {
     return database.executar(instrucao)
 }
 
+function cadastrarMeta(meta) {
+    var instrucao = `UPDATE meta_peixes SET meta = ${meta}`
+    console.log("Executando a instrução SQL: \n" + instrucao)
+    return database.executar(instrucao);
+}
+
+function listarMeta() {
+    var instrucao = `SELECT meta FROM meta_peixes WHERE id = 1`
+    console.log("Executando a instrução SQL: \n" + instrucao)
+    return database.executar(instrucao)
+}
+
 module.exports = {
     cadastrar,
     listar,
@@ -100,5 +112,7 @@ module.exports = {
     listarModalidadesPesca,
     cadastrarModalidadePesca,
     listarModalidadeProdutiva,
-    listarPeixesPorMes
+    listarPeixesPorMes,
+    cadastrarMeta,
+    listarMeta
 }
