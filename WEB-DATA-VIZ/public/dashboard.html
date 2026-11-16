@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboards.css">
     <title>Diário de Pesca do Gabriel | formulario</title>
-    
+
 </head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <body>
     <div class="box-pai">
         <div class="navbar">
@@ -20,7 +21,7 @@
                     <span class="bt-registrar">Registrar</span>
                 </a>
                 <span class="bt-dashboard">Dashboard</span>
-                <span class="bt-sair">Sair</span> 
+                <span class="bt-sair">Sair</span>
             </div>
         </div>
         <div class="box-dashboard">
@@ -28,17 +29,20 @@
                 <div class="kpi kpi-qtd-peixes">
                     <p>Recorde pessoal</p><br>
                     <span id="qtd_peixe"></span>
-                    <p class="detalhes"><span id="data_recorde_pessoal"></span>&nbsp; - &nbsp;<span id="local_recorde_pessoal"></span></p>
+                    <p class="detalhes"><span id="data_recorde_pessoal"></span>&nbsp; - &nbsp;<span
+                            id="local_recorde_pessoal"></span></p>
                 </div>
                 <div class="kpi kpi-local-favorito">
                     <p>Local mais produtivo:</p>
                     <span id="local_mais_produtivo"></span>
-                    <p><span id="media_peixes_local"></span>&nbsp;peixes/pescaria&nbsp;-&nbsp;<span id="qtd_pescarias_local"></span>&nbsp;pescarias</p>
+                    <p><span id="media_peixes_local"></span>&nbsp;peixes/pescaria&nbsp;-&nbsp;<span
+                            id="qtd_pescarias_local"></span>&nbsp;pescarias</p>
                 </div>
                 <div class="kpi kpi-modalidade-favorita">
                     <p>Modalidade mais produtiva</p><br>
                     <span id="modalidade_mais_produtiva"></span><br>
-                    <p><span id="media_peixes_modalidade"></span>&nbsp;peixes/pescaria -&nbsp;<span id="total_pescarias_modalidade"></span>&nbsp;pescarias</p>
+                    <p><span id="media_peixes_modalidade"></span>&nbsp;peixes/pescaria -&nbsp;<span
+                            id="total_pescarias_modalidade"></span>&nbsp;pescarias</p>
                 </div>
             </div>
             <div class="box-grafico">
@@ -56,32 +60,86 @@
 </body>
 
 <script>
+    var lista_meses = []
+    var lista_qtd_peixes = []
+    var lista_acima = []
+    var lista_abaixo = []
+    var lista_meta = []
+    var meta = 25
+
     const ctx = document.getElementById('grafico_qtd_peixes');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
-            datasets: [{
-                label: 'Quantidade Peixes',
-                data: [10, 20, 15, 100]
-            }] 
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true
+
+    fetch("/dadosFormulario/listarPeixesPorMes")
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (dados) {
+            console.log(dados)
+
+            for (let i = 0; i < dados.length; i++) {
+                lista_meses.push(dados[i].Mes)
+                lista_meta.push(meta)
+
+                if (dados[i].Total < meta) {
+                    lista_abaixo.push(dados[i].Total)
+                    lista_acima.push(null)
+                } else {
+                    lista_acima.push(dados[i].Total)
+                    lista_abaixo.push(null)
                 }
-            },
-            plugins: {
 
             }
-        }
-    })
 
-    fetch("/dadosFormulario/listar") 
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: lista_meses,
+                    datasets: [{
+                        label: 'Abaixo da meta',
+                        data: lista_abaixo,
+                        backgroundColor: 'red',
+                    },{
+                        label: 'Acima da meta',
+                        data: lista_acima,
+                        backgroundColor: 'green'
+                    },{
+                        type: 'line',
+                        label: 'Meta',
+                        data: lista_meta,
+                        borderColor: 'orange',
+                        borderDash: [6, 6],
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            stacked: true,
+                            title: {
+                                display: true,
+                                text: 'Quantidade de peixes'
+                            }
+                        },
+                        x: {
+                            stacked: true,
+                            title: {
+                                display: true,
+                                text: 'Meses'
+                            }
+                        }
+                    },
+                    plugins: {
+
+                    }
+                }
+            })
+        })
+
+    fetch("/dadosFormulario/listar")
         .then(function (resposta) {
             return resposta.json();
         })
@@ -93,7 +151,7 @@
             document.getElementById("qtd_pescarias_local").innerText = kpi2.qtd_idas;
 
         });
-    
+
     fetch("/dadosFormulario/listarMaiorPesca")
         .then(function (resposta) {
             return resposta.json();
@@ -117,8 +175,8 @@
             document.getElementById("media_peixes_modalidade").innerText = kpi3.media_peixes;
             document.getElementById("total_pescarias_modalidade").innerText = kpi3.qtd_pescarias;
         })
-    
-    
+
+
 </script>
 
 </html>

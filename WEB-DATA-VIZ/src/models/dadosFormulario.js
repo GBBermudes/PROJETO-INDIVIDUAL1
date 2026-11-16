@@ -85,6 +85,12 @@ function listarModalidadeProdutiva() {
     return database.executar(instrucao)
 }
 
+function listarPeixesPorMes() {
+    var instrucao = `SELECT * FROM grafico_pescados_mes;`
+    console.log("Executando a instrução SQL: \n" + instrucao)
+    return database.executar(instrucao)
+}
+
 module.exports = {
     cadastrar,
     listar,
@@ -93,5 +99,6 @@ module.exports = {
     listarLocalPesca,
     listarModalidadesPesca,
     cadastrarModalidadePesca,
-    listarModalidadeProdutiva
+    listarModalidadeProdutiva,
+    listarPeixesPorMes
 }

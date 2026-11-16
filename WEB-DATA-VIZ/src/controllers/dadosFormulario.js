@@ -16,6 +16,14 @@ function listarMaiorPesca(req, res) {
     })
 }
 
+function listarPeixesPorMes(req, res) {
+    dadosFormularioModel.listarPeixesPorMes().then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
 function cadastrar(req, res) {
     var data = req.body.data;
     var local = req.body.local;
@@ -99,5 +107,6 @@ module.exports = {
     listarLocalPesca,
     listarModalidadesPesca,
     cadastrarModalidadePesca,
-    listarModalidadeProdutiva
+    listarModalidadeProdutiva,
+    listarPeixesPorMes
 }

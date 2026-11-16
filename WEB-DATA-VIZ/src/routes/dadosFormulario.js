@@ -35,4 +35,8 @@ router.get("/listarModalidadeProdutiva", function (req, res) {
     dadosFormularioController.listarModalidadeProdutiva(req, res)
 })
 
+router.get("/listarPeixesPorMes", function (req, res) {
+    dadosFormularioController.listarPeixesPorMes(req,res)
+})
+
 module.exports = router;
