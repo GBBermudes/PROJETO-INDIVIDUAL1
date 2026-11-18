@@ -109,6 +109,12 @@ function listarRankingModalidades() {
     return database.executar(instrucao)
 }
 
+function listarTabelaRegistro() {
+    var instrucao = `SELECT * FROM historico_registro;`
+    console.log("Executando a intrucao SQL: \n" + instrucao)
+    return database.executar(instrucao)
+}
+
 module.exports = {
     cadastrar,
     listar,
@@ -121,5 +127,6 @@ module.exports = {
     listarPeixesPorMes,
     cadastrarMeta,
     listarMeta,
-    listarRankingModalidades
+    listarRankingModalidades,
+    listarTabelaRegistro
 }

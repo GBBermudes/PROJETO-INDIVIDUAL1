@@ -129,6 +129,14 @@ function listarRankingModalidades(req,res){
     })
 }
 
+function listarTabelaRegistro(req,res) {
+    dadosFormularioModel.listarTabelaRegistro().then(function (resposta) {
+        res.status(200).json(resposta)
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
 module.exports = {
     listar,
     cadastrar,
@@ -141,5 +149,6 @@ module.exports = {
     listarPeixesPorMes,
     cadastrarMeta,
     listarMeta,
-    listarRankingModalidades
+    listarRankingModalidades,
+    listarTabelaRegistro
 }

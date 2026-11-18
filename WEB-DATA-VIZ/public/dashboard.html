@@ -73,13 +73,7 @@
                                 <th>Nota da Pescaria</th>
                             </tr>
                         </thead>
-                        <tbody id="tabela-historico">
-                            <tr><td>20/03/2026</td><td>Praia de Bertioga</td><td>Pesca na Praia</td><td>250</td><td>5</td></tr>
-                            <tr><td>20/03/2026</td><td>Praia de Bertioga</td><td>Pesca na Praia</td><td>250</td><td>5</td></tr>
-                            <tr><td>20/03/2026</td><td>Praia de Bertioga</td><td>Pesca na Praia</td><td>250</td><td>5</td></tr>
-                            <tr><td>20/03/2026</td><td>Praia de Bertioga</td><td>Pesca na Praia</td><td>250</td><td>5</td></tr>
-                            <tr><td>20/03/2026</td><td>Praia de Bertioga</td><td>Pesca na Praia</td><td>250</td><td>5</td></tr>
-                        </tbody>
+                        <tbody id="tabela-historico"></tbody>
                     </table>
                 </div>
             </div>
@@ -134,17 +128,20 @@
                                 label: 'Abaixo da meta',
                                 data: lista_abaixo,
                                 backgroundColor: 'red',
+                                maxBarThickness: 100
                             }, {
                                 label: 'Acima da meta',
                                 data: lista_acima,
-                                backgroundColor: 'green'
+                                backgroundColor: 'green',
+                                maxBarThickness: 100
                             }, {
                                 type: 'line',
                                 label: 'Meta',
                                 data: lista_meta,
                                 borderColor: 'orange',
                                 borderDash: [6, 6],
-                                pointRadius: 0
+                                pointRadius: 0,
+                                maxBarThickness: 100
                             }]
                         },
                         options: {
@@ -290,6 +287,34 @@
         }
     }
 
+    fetch("/dadosFormulario/listarTabelaRegistro")
+        .then(function (resposta) {
+            return resposta.json()
+        })
+        .then(function (dados) {
+            var tbody = document.getElementById("tabela-historico")
+            tbody.innerHTML = ""
+
+            for (let i = 0; i < dados.length; i++) {
+                var linha = document.createElement("tr");
+                var celulaData = document.createElement("td");
+                celulaData.textContent = dados[i].data_registro
+                linha.appendChild(celulaData);    
+                var celulaLocal = document.createElement("td");
+                celulaLocal.textContent = dados[i].local_pesca
+                linha.appendChild(celulaLocal);    
+                var celulaModalidade = document.createElement("td");
+                celulaModalidade.textContent = dados[i].modalidade
+                linha.appendChild(celulaModalidade);    
+                var celulaQtdPeixe = document.createElement("td");
+                celulaQtdPeixe.textContent = dados[i].qtd_peixe
+                linha.appendChild(celulaQtdPeixe);    
+                var celulaNota = document.createElement("td");
+                celulaNota.textContent = dados[i].nota
+                linha.appendChild(celulaNota);    
+                tbody.appendChild(linha)
+            }
+        })
 
 </script>
 

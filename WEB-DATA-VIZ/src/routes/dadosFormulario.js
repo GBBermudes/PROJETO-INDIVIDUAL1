@@ -51,4 +51,8 @@ router.get("/listarRankingModalidades", function (req,res) {
     dadosFormularioController.listarRankingModalidades(req, res)
 })
 
+router.get("/listarTabelaRegistro", function(req,res) {
+    dadosFormularioController.listarTabelaRegistro(req,res)
+})
+
 module.exports = router;
