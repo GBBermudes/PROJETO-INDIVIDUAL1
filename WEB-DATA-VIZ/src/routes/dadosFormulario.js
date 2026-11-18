@@ -47,4 +47,8 @@ router.get("/listarMeta", function(req,res) {
     dadosFormularioController.listarMeta(req,res)
 })
 
+router.get("/listarRankingModalidades", function (req,res) {
+    dadosFormularioController.listarRankingModalidades(req, res)
+})
+
 module.exports = router;
