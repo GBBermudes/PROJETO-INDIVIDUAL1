@@ -123,7 +123,7 @@ function listarMeta(req,res){
 
 function listarRankingModalidades(req,res){
     dadosFormularioModel.listarRankingModalidades().then(function (resposta) {
-        res.status().json(resposta)
+        res.status(200).json(resposta)
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
     })

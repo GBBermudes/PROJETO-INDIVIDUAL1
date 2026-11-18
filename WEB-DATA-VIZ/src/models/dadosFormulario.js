@@ -105,7 +105,7 @@ function listarMeta() {
 
 function listarRankingModalidades() {
     var instrucao = `SELECT * FROM grafico_ranking_modalidades;`
-    console.log("Executando a intrução SQL: \n" + intrucao)
+    console.log("Executando a intrução SQL: \n" + instrucao)
     return database.executar(instrucao)
 }
 
