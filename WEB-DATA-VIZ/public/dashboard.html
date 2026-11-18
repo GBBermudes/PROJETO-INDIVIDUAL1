@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="grafico-2">
-                    <p>Ranking modalidades por nota(2026)</p>
+                    <p>Ranking de modalidades por nota (2026)</p>
                     <div id="legenda_ranking" class="legenda-ranking"></div>
                     <div class="area-grafico-2">
                         <canvas id="grafico_ranking_modalidades"></canvas>
@@ -71,6 +71,8 @@
     var lista_acima = []
     var lista_abaixo = []
     var lista_meta = []
+    var ranking_nomes = []
+    var ranking_medias = []
     var meta = 0
 
     const ctx = document.getElementById('grafico_qtd_peixes');
@@ -154,60 +156,54 @@
         })
 
 
-    // ===== RANKING DE MODALIDADES (dados de exemplo) =====
-    var ranking_nomes = ["Praia", "Canal", "Esportiva", "Artificial"]
-    var ranking_medias = [4.5, 3.8, 3.0, 1.8]
-    var ranking_qtds = [12, 9, 6, 4]
-    var ranking_cores = ["#e53935", "#43a047", "#1e88e5", "#fb8c00"]
+    fetch("/dadosFormulario/listarRankingModalidades")
+        .then(function (resposta) {
+            return resposta.json()
+        })
+        .then(function (dados) {
 
-    var legenda = document.getElementById("legenda_ranking")
-    for (let i = 0; i < ranking_nomes.length; i++) {
-        legenda.innerHTML += `
-        <span class="item-legenda">
-            <span class="quadrado" style="background:${ranking_cores[i]}"></span>${ranking_nomes[i]}
-        </span>`
-    }
-
-    new Chart(document.getElementById("grafico_ranking_modalidades"), {
-        type: 'bar',
-        data: {
-            labels: ranking_nomes,
-            datasets: [{
-                label: 'Nota média',
-                data: ranking_medias,
-                backgroundColor: ranking_cores,
-                borderRadius: 8,
-                maxBarThickness: 40
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    min: 0,
-                    max: 5,
-                    title: {
-                        display: true,
-                        text: 'Nota média (1 a 5)'
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        afterLabel: function (item) {
-                            return ranking_qtds[item.dataIndex] + " pescarias"
-                        }
-                    }
-                }
+            for (let i = 0; i < dados.length; i++) {
+                ranking_nomes.push(dados[i].modalidade)
+                ranking_medias.push(dados[i].media_nota)
             }
-        }
-    })
+
+            new Chart(document.getElementById("grafico_ranking_modalidades"), {
+                type: 'bar',
+                data: {
+                    labels: ranking_nomes,
+                    datasets: [{
+                        label: 'Nota média',
+                        data: ranking_medias,
+                        backgroundColor: 'rgb(2, 54, 26)',
+                        borderRadius: 8,
+                        maxBarThickness: 40
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            min: 0,
+                            max: 5,
+                            title: {
+                                display: true,
+                                text: 'Nota média (1 a 5)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                        },
+                        
+                    }
+                }
+            })
+        })
+
+
 
     fetch("/dadosFormulario/listar")
         .then(function (resposta) {

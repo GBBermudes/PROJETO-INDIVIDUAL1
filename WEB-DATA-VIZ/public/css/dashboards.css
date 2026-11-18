@@ -263,6 +263,8 @@ body {
 .area-grafico-2 {
     height: 75%;
     width: 90%;
+    margin-right: 30px;
+    margin-top: 10px;
 }
 
 .legenda-ranking {
