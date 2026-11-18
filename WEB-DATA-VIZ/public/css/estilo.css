@@ -352,7 +352,12 @@ button:active {
 
 .relato {
   flex: 0 0 300px;
- 
+}
+
+.relato1 {
+  background-image: url(../assets/imgs/FOTO_PESCANDO_1.jpeg);
+  background-size: cover;
+  border-radius: 20px;
 }
 
 .relatos::-webkit-scrollbar {
