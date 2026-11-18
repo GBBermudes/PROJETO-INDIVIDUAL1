@@ -103,6 +103,12 @@ function listarMeta() {
     return database.executar(instrucao)
 }
 
+function listarRankingModalidades() {
+    var instrucao = `SELECT * FROM grafico_ranking_modalidades;`
+    console.log("Executando a intrução SQL: \n" + intrucao)
+    return database.executar(instrucao)
+}
+
 module.exports = {
     cadastrar,
     listar,
@@ -114,5 +120,6 @@ module.exports = {
     listarModalidadeProdutiva,
     listarPeixesPorMes,
     cadastrarMeta,
-    listarMeta
+    listarMeta,
+    listarRankingModalidades
 }
