@@ -53,7 +53,13 @@
                         <canvas id="grafico_qtd_peixes"></canvas>
                     </div>
                 </div>
-                <div class="grafico-2"></div>
+                <div class="grafico-2">
+                    <p>Ranking modalidades por nota(2026)</p>
+                    <div id="legenda_ranking" class="legenda-ranking"></div>
+                    <div class="area-grafico-2">
+                        <canvas id="grafico_ranking_modalidades"></canvas>
+                    </div>
+                </div>
             </div>
             <div class="box-historico-registro"></div>
         </div>
@@ -147,6 +153,62 @@
 
         })
 
+
+    // ===== RANKING DE MODALIDADES (dados de exemplo) =====
+    var ranking_nomes = ["Praia", "Canal", "Esportiva", "Artificial"]
+    var ranking_medias = [4.5, 3.8, 3.0, 1.8]
+    var ranking_qtds = [12, 9, 6, 4]
+    var ranking_cores = ["#e53935", "#43a047", "#1e88e5", "#fb8c00"]
+
+    var legenda = document.getElementById("legenda_ranking")
+    for (let i = 0; i < ranking_nomes.length; i++) {
+        legenda.innerHTML += `
+        <span class="item-legenda">
+            <span class="quadrado" style="background:${ranking_cores[i]}"></span>${ranking_nomes[i]}
+        </span>`
+    }
+
+    new Chart(document.getElementById("grafico_ranking_modalidades"), {
+        type: 'bar',
+        data: {
+            labels: ranking_nomes,
+            datasets: [{
+                label: 'Nota média',
+                data: ranking_medias,
+                backgroundColor: ranking_cores,
+                borderRadius: 8,
+                maxBarThickness: 40
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    min: 0,
+                    max: 5,
+                    title: {
+                        display: true,
+                        text: 'Nota média (1 a 5)'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        afterLabel: function (item) {
+                            return ranking_qtds[item.dataIndex] + " pescarias"
+                        }
+                    }
+                }
+            }
+        }
+    })
+
     fetch("/dadosFormulario/listar")
         .then(function (resposta) {
             return resposta.json();
@@ -201,13 +263,13 @@
                 }),
 
             })
-            .then(function (resposta) {
-                if (resposta) {
-                    location.reload()
-                } else {
-                    alert("Reload Falhou")
-                }
-            })
+                .then(function (resposta) {
+                    if (resposta) {
+                        location.reload()
+                    } else {
+                        alert("Reload Falhou")
+                    }
+                })
         }
     }
 
