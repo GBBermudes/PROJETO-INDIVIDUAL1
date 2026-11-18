@@ -248,9 +248,50 @@ body {
     border: solid 1px rgb(211, 233, 211);
 }
 
+.grafico-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grafico-2 p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: "Hanken Grotesk", sans-serif;
+}
+
+.area-grafico-2 {
+    height: 75%;
+    width: 90%;
+}
+
+.legenda-ranking {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin: 8px 0;
+    font-family: "Hanken Grotesk", sans-serif;
+    font-size: 14px;
+}
+
+.item-legenda {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.quadrado {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
 /* BOX HISTORICO REGISTROS */
 
 .box-historico-registro {
     background-color: green;
     height: 26.4vh;
 }
+
