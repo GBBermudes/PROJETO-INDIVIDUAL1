@@ -93,6 +93,8 @@
     var meta = 0
 
     const ctx = document.getElementById('grafico_qtd_peixes');
+    const id_usuario = sessionStorage.getItem("ID_USUARIO")
+    console.log(id_usuario)
 
     fetch("/dadosFormulario/listarMeta")
         .then(function (resposta) {
@@ -238,7 +240,7 @@
 
         });
 
-    fetch("/dadosFormulario/listarMaiorPesca")
+        fetch(`/dadosFormulario/listarMaiorPesca/${id_usuario}`)
         .then(function (resposta) {
             return resposta.json();
         })
@@ -275,7 +277,8 @@
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    meta: meta
+                    meta: meta,
+                    id_usuario: id_usuario
                 }),
 
             })

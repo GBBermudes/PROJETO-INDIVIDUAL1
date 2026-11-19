@@ -11,7 +11,7 @@ router.get("/listar", function (req, res) {
     dadosFormularioController.listar(req, res);
 });
 
-router.get("/listarMaiorPesca", function (req, res) {
+router.get("/listarMaiorPesca/:id_usuario", function (req, res) {
     dadosFormularioController.listarMaiorPesca(req, res);
 })
 

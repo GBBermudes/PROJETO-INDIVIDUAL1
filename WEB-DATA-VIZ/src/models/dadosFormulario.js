@@ -18,17 +18,20 @@ function listar() {
     return database.executar(instrucao)
 }
 
-function listarMaiorPesca() {
+function listarMaiorPesca(id_usuario) {
     var instrucao = `
-        SELECT 
-		    d.qtd_peixe,
-            DATE_FORMAT(d.dataa, '%d/%m/%Y') as 'Data',
-            l.nome as 'Local'
-	    FROM dados_dashboard d
-	    JOIN local_pesca l
-		    ON d.fk_local_pesca = l.id
-	    ORDER BY qtd_peixe DESC
-        LIMIT 1;
+        	SELECT 
+                d.qtd_peixe,
+                DATE_FORMAT(d.dataa, '%d/%m/%Y') as 'Data',
+                l.nome as 'Local'
+            FROM dados_dashboard d
+            JOIN local_pesca l
+                ON d.fk_local_pesca = l.id
+            JOIN usuario u
+                ON d.fk_usuario = u.id
+            WHERE u.id = ${id_usuario}
+            ORDER BY qtd_peixe DESC
+            LIMIT 1;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucao);

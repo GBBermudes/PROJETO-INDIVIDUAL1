@@ -9,7 +9,8 @@ function listar(req, res) {
 };
 
 function listarMaiorPesca(req, res) {
-    dadosFormularioModel.listarMaiorPesca().then(function (resultado) {
+    const id_usuario = req.params.id_usuario;
+    dadosFormularioModel.listarMaiorPesca(id_usuario).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
