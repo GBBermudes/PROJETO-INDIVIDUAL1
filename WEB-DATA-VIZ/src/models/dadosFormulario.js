@@ -1,18 +1,21 @@
 
 var database = require("../database/config")
 
-function listar() {
+function listar(id_usuario) {
     var instrucao = `
-        SELECT
-		    l.nome as 'local',
-            ROUND(AVG(d.qtd_peixe), 1) media_peixes,
-            COUNT(l.nome) qtd_idas
-	    FROM dados_dashboard d
-	    JOIN local_pesca l
-		    ON d.fk_local_pesca = l.id
-	    GROUP BY l.nome
-        ORDER BY AVG(d.qtd_peixe) DESC
-        LIMIT 1;
+            SELECT
+                l.nome as 'local',
+                ROUND(AVG(d.qtd_peixe), 1) media_peixes,
+                COUNT(l.nome) qtd_idas
+            FROM dados_dashboard d
+            JOIN local_pesca l
+                ON d.fk_local_pesca = l.id
+            JOIN usuario u
+                ON d.fk_usuario = u.id
+            WHERE u.id = ${id_usuario}
+            GROUP BY l.nome
+            ORDER BY AVG(d.qtd_peixe) DESC
+            LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao)

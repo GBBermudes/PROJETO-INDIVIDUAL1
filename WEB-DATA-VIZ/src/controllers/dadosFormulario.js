@@ -1,7 +1,8 @@
 var dadosFormularioModel = require("../models/dadosFormulario")
 
 function listar(req, res) {
-    dadosFormularioModel.listar().then(function (resultado) {
+    const id_usuario = req.params.id_usuario;
+    dadosFormularioModel.listar(id_usuario).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)

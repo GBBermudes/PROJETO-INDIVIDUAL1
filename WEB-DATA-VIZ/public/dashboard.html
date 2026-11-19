@@ -227,7 +227,7 @@
 
 
 
-    fetch("/dadosFormulario/listar")
+    fetch(`/dadosFormulario/listar/${id_usuario}`)
         .then(function (resposta) {
             return resposta.json();
         })
