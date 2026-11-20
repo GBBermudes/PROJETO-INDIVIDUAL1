@@ -133,14 +133,39 @@ function listarMeta() {
     return database.executar(instrucao)
 }
 
-function listarRankingModalidades() {
-    var instrucao = `SELECT * FROM grafico_ranking_modalidades;`
+function listarRankingModalidades(id_usuario) {
+    var instrucao = `SELECT 
+                        m.nome modalidade,
+                        round(avg(d.nota), 1) as media_nota
+                    FROM dados_dashboard d
+                    JOIN modalidade m
+                        ON d.fk_modalidade = m.id
+                    JOIN usuario u
+                        ON d.fk_usuario = u.id
+                    WHERE u.id = ${id_usuario}
+                    GROUP BY m.nome
+                    ORDER BY avg(d.nota) DESC
+                    LIMIT 4;`
     console.log("Executando a intrução SQL: \n" + instrucao)
     return database.executar(instrucao)
 }
 
-function listarTabelaRegistro() {
-    var instrucao = `SELECT * FROM historico_registro;`
+function listarTabelaRegistro(id_usuario) {
+    var instrucao = `SELECT
+                        DATE_FORMAT(d.dataa, '%d/%m/%Y') data_registro,
+                        l.nome local_pesca,
+                        m.nome modalidade,
+                        d.qtd_peixe,
+                        d.nota
+                    FROM dados_dashboard d
+                    JOIN local_pesca l
+                        ON d.fk_local_pesca = l.id
+                    JOIN modalidade m
+                        ON d.fk_modalidade = m.id
+                    JOIN usuario u
+                        ON d.fk_usuario = u.id
+                    WHERE u.id = ${id_usuario}
+                    ORDER BY d.id DESC;`
     console.log("Executando a intrucao SQL: \n" + instrucao)
     return database.executar(instrucao)
 }

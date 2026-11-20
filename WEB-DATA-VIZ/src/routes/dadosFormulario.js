@@ -47,11 +47,11 @@ router.get("/listarMeta", function(req,res) {
     dadosFormularioController.listarMeta(req,res)
 })
 
-router.get("/listarRankingModalidades", function (req,res) {
+router.get("/listarRankingModalidades/:id_usuario", function (req,res) {
     dadosFormularioController.listarRankingModalidades(req, res)
 })
 
-router.get("/listarTabelaRegistro", function(req,res) {
+router.get("/listarTabelaRegistro/:id_usuario", function(req,res) {
     dadosFormularioController.listarTabelaRegistro(req,res)
 })
 

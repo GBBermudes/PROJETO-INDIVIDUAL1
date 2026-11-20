@@ -125,7 +125,8 @@ function listarMeta(req,res){
 }
 
 function listarRankingModalidades(req,res){
-    dadosFormularioModel.listarRankingModalidades().then(function (resposta) {
+    const id_usuario = req.params.id_usuario
+    dadosFormularioModel.listarRankingModalidades(id_usuario).then(function (resposta) {
         res.status(200).json(resposta)
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
@@ -133,7 +134,8 @@ function listarRankingModalidades(req,res){
 }
 
 function listarTabelaRegistro(req,res) {
-    dadosFormularioModel.listarTabelaRegistro().then(function (resposta) {
+    const id_usuario = req.params.id_usuario
+    dadosFormularioModel.listarTabelaRegistro(id_usuario).then(function (resposta) {
         res.status(200).json(resposta)
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)

@@ -178,7 +178,7 @@
         })
 
 
-    fetch("/dadosFormulario/listarRankingModalidades")
+    fetch(`/dadosFormulario/listarRankingModalidades/${id_usuario}`)
         .then(function (resposta) {
             return resposta.json()
         })
@@ -292,7 +292,7 @@
         }
     }
 
-    fetch("/dadosFormulario/listarTabelaRegistro")
+    fetch(`/dadosFormulario/listarTabelaRegistro/${id_usuario}`)
         .then(function (resposta) {
             return resposta.json()
         })
