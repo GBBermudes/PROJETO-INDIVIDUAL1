@@ -102,7 +102,7 @@
         })
         .then(function (dados) {
             meta = Number(dados[0].meta)
-            fetch("/dadosFormulario/listarPeixesPorMes")
+            fetch(`/dadosFormulario/listarPeixesPorMes/${id_usuario}`)
                 .then(function (resposta) {
                     return resposta.json();
                 })

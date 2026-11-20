@@ -35,7 +35,7 @@ router.get("/listarModalidadeProdutiva/:id_usuario", function (req, res) {
     dadosFormularioController.listarModalidadeProdutiva(req, res)
 })
 
-router.get("/listarPeixesPorMes", function (req, res) {
+router.get("/listarPeixesPorMes/:id_usuario", function (req, res) {
     dadosFormularioController.listarPeixesPorMes(req,res)
 })
 

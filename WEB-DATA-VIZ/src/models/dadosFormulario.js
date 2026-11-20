@@ -94,8 +94,29 @@ function listarModalidadeProdutiva(id_usuario) {
     return database.executar(instrucao)
 }
 
-function listarPeixesPorMes() {
-    var instrucao = `SELECT * FROM grafico_pescados_mes;`
+function listarPeixesPorMes(id_usuario) {
+    var instrucao = `	SELECT 
+                            CASE 
+                            WHEN MONTH(dataa) = 1 THEN "JAN"
+                            WHEN MONTH(dataa) = 2 THEN "FEV"
+                            WHEN MONTH(dataa) = 3 THEN "MAR"
+                            WHEN MONTH(dataa) = 4 THEN "ABR"
+                            WHEN MONTH(dataa) = 5 THEN "MAI"
+                            WHEN MONTH(dataa) = 6 THEN "JUN"
+                            WHEN MONTH(dataa) = 7 THEN "JUL"
+                            WHEN MONTH(dataa) = 8 THEN "AGO"
+                            WHEN MONTH(dataa) = 9 THEN "SET"
+                            WHEN MONTH(dataa) = 10 THEN "OUT"
+                            WHEN MONTH(dataa) = 11 THEN "NOV"
+                            WHEN MONTH(dataa) = 12 THEN "DEZ"
+                            END AS Mes,
+                            SUM(qtd_peixe) AS Total
+                        FROM dados_dashboard d
+                        JOIN usuario u
+                            ON d.fk_usuario = u.id
+                        WHERE u.id = ${id_usuario}
+                        GROUP BY MES, MONTH(dataa)
+                        ORDER BY MONTH(dataa);`
     console.log("Executando a instrução SQL: \n" + instrucao)
     return database.executar(instrucao)
 }

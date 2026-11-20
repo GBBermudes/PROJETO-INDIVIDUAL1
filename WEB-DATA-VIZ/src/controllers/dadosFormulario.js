@@ -19,7 +19,8 @@ function listarMaiorPesca(req, res) {
 }
 
 function listarPeixesPorMes(req, res) {
-    dadosFormularioModel.listarPeixesPorMes().then(function (resultado) {
+    const id_usuario = req.params.id_usuario
+    dadosFormularioModel.listarPeixesPorMes(id_usuario).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
