@@ -130,7 +130,7 @@ function listarPeixesPorMes(id_usuario) {
         ON r.fk_local = l.id
     JOIN usuario u
         ON l.fk_usuario = u.id
-    WHERE u.id = ${id_usuario}
+    WHERE u.id = ${id_usuario} AND YEAR(r.data) = 2026
     GROUP BY MES, MONTH(r.data)
     ORDER BY MONTH(r.data);`
     console.log("Executando a instrução SQL: \n" + instrucao)
@@ -152,15 +152,15 @@ function listarMeta() {
 function listarRankingModalidades(id_usuario) {
     var instrucao = `SELECT 
                         m.nome modalidade,
-                        round(avg(d.nota), 1) as media_nota
-                    FROM dados_dashboard d
+                        round(avg(r.nota), 1) as media_nota
+                    FROM registro r
                     JOIN modalidade m
-                        ON d.fk_modalidade = m.id
+                        ON r.fk_modalidade = m.id
                     JOIN usuario u
-                        ON d.fk_usuario = u.id
+                        ON m.fk_usuario = u.id
                     WHERE u.id = ${id_usuario}
                     GROUP BY m.nome
-                    ORDER BY avg(d.nota) DESC
+                    ORDER BY avg(r.nota) DESC
                     LIMIT 4;`
     console.log("Executando a intrução SQL: \n" + instrucao)
     return database.executar(instrucao)
