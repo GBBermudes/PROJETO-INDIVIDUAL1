@@ -50,7 +50,7 @@ function cadastrar(data, local, modalidade, qtd_peixes,id_usuario, nota) {
 }
 
 function cadastrarLocalPesca(nome_local_pesca, id_usuario) {
-    var instrucao = `INSERT INTO local_pesca (nome, fk_usuario) VALUES ('${nome_local_pesca}', '${id_usuario}')`;
+    var instrucao = `INSERT INTO local (nome, fk_usuario) VALUES ('${nome_local_pesca}', ${id_usuario})`;
     console.log("Executando a intrução SQL: \n" + instrucao);
     return database.executar(instrucao)
 }
