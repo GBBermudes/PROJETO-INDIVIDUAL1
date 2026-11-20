@@ -38,13 +38,17 @@ function cadastrar(req, res) {
     if (data == undefined || local == undefined || modalidade == undefined || qtd_peixes == undefined || nota == undefined) {
         res.status(400).send("Algum esta undefined");
         return;
-    }
+    } else {
 
-    dadosFormularioModel.cadastrar(data, local, modalidade, qtd_peixes, id_usuario, nota).then(function (resposta) {
-        res.status(200).send("Registro inserido com sucesso")
-    }).catch(function (erro) {
-        res.status(500).json(erro.sqlMessage)
-    })
+        
+        dadosFormularioModel.cadastrar(data, local, modalidade, qtd_peixes, id_usuario, nota).then(function (resposta) {
+            console.log("Estou na controller")
+            console.log(resposta)
+            res.status(200).send("Registro inserido com sucesso")
+        }).catch(function (erro) {
+            res.status(500).json(erro.sqlMessage)
+        })
+    }
 
 }
 

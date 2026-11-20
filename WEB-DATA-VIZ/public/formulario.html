@@ -62,6 +62,8 @@
     id_usuarioo.innerHTML = nome_usuario
     
     const id_usuario = sessionStorage.getItem("ID_USUARIO")
+    console.log("id do usuario: ")
+    console.log(id_usuario)
     
     function cadastrarLocalPesca() {
         var nome_local_pesca = prompt("Insira o novo local")
@@ -103,6 +105,18 @@
         var modalidade = selecione_modalidade.value;
         var qtd_peixes = Number(ipt_qtd_peixes.value);
         var nota = Number(ipt_nota.value);
+        console.log("JSON: ")
+        console.log(
+            {
+                    data: data,
+                    local: local,
+                    modalidade: modalidade,
+                    qtd_peixes: qtd_peixes,
+                    nota: nota
+                }
+        )
+
+        console.log(selecione_modalidade.value)
 
         if (data == "" || local == "" || modalidade == "" || qtd_peixes === "" || nota == "") {
             alert("Todas as opções devem estar selecionadas")

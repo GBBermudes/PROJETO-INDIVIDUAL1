@@ -43,7 +43,7 @@ function listarMaiorPesca(id_usuario) {
 
 function cadastrar(data, local, modalidade, qtd_peixes,id_usuario, nota) {
     var instrucao = `
-    INSERT INTO dados_dashboard (dataa, fk_local_pesca , fk_modalidade, qtd_peixe, fk_usuario, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}','${id_usuario}' '${nota}')
+    INSERT INTO dados_dashboard (dataa, fk_local_pesca , fk_modalidade, qtd_peixe, fk_usuario, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}','${id_usuario}', '${nota}')
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -56,7 +56,8 @@ function cadastrarLocalPesca(nome_local_pesca, id_usuario) {
 }
 
 function listarLocalPesca(id_usuario) {
-    var instrucao = `SELECT 
+    var instrucao = `SELECT
+                        l.id,
                         l.nome 
                     FROM local_pesca l 
                     JOIN usuario u 

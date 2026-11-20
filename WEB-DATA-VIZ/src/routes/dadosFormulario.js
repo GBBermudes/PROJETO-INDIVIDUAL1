@@ -3,7 +3,9 @@ var router = express.Router();
 
 var dadosFormularioController = require("../controllers/dadosFormulario");
 
+
 router.post("/cadastrar/:id_usuario", function (req, res) {
+    console.log("Estou na rota")
     dadosFormularioController.cadastrar(req, res);
 });
 
