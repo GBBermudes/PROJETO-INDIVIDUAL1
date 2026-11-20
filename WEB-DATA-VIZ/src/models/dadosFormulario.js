@@ -89,17 +89,18 @@ function listarModalidadeProdutiva(id_usuario) {
     var instrucao = `    
             SELECT
                 m.nome Modalidade,
-                ROUND(AVG(d.qtd_peixe), 1) media_peixes,
+                ROUND(AVG(r.qtd_peixes), 1) media_peixes,
                 COUNT(m.nome) qtd_pescarias
             FROM modalidade m
-            JOIN dados_dashboard d
-                ON d.fk_modalidade = m.id
+            JOIN registro r
+                ON r.fk_modalidade = m.id
             JOIN usuario U
-                ON d.fk_usuario = u.id
+                ON m.fk_usuario = u.id
             WHERE u.id = ${id_usuario}
             GROUP BY m.nome
-            ORDER BY AVG(d.qtd_peixe) DESC
+            ORDER BY AVG(r.qtd_peixes) DESC
             LIMIT 1;
+    
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucao)
@@ -107,28 +108,31 @@ function listarModalidadeProdutiva(id_usuario) {
 }
 
 function listarPeixesPorMes(id_usuario) {
-    var instrucao = `	SELECT 
-                            CASE 
-                            WHEN MONTH(dataa) = 1 THEN "JAN"
-                            WHEN MONTH(dataa) = 2 THEN "FEV"
-                            WHEN MONTH(dataa) = 3 THEN "MAR"
-                            WHEN MONTH(dataa) = 4 THEN "ABR"
-                            WHEN MONTH(dataa) = 5 THEN "MAI"
-                            WHEN MONTH(dataa) = 6 THEN "JUN"
-                            WHEN MONTH(dataa) = 7 THEN "JUL"
-                            WHEN MONTH(dataa) = 8 THEN "AGO"
-                            WHEN MONTH(dataa) = 9 THEN "SET"
-                            WHEN MONTH(dataa) = 10 THEN "OUT"
-                            WHEN MONTH(dataa) = 11 THEN "NOV"
-                            WHEN MONTH(dataa) = 12 THEN "DEZ"
-                            END AS Mes,
-                            SUM(qtd_peixe) AS Total
-                        FROM dados_dashboard d
-                        JOIN usuario u
-                            ON d.fk_usuario = u.id
-                        WHERE u.id = ${id_usuario}
-                        GROUP BY MES, MONTH(dataa)
-                        ORDER BY MONTH(dataa);`
+    var instrucao = `
+    SELECT 
+        CASE 
+        WHEN MONTH(r.data) = 1 THEN "JAN"
+        WHEN MONTH(r.data) = 2 THEN "FEV"
+        WHEN MONTH(r.data) = 3 THEN "MAR"
+        WHEN MONTH(r.data) = 4 THEN "ABR"
+        WHEN MONTH(r.data) = 5 THEN "MAI"
+        WHEN MONTH(r.data) = 6 THEN "JUN"
+        WHEN MONTH(r.data) = 7 THEN "JUL"
+        WHEN MONTH(r.data) = 8 THEN "AGO"
+        WHEN MONTH(r.data) = 9 THEN "SET"
+        WHEN MONTH(r.data) = 10 THEN "OUT"
+        WHEN MONTH(r.data) = 11 THEN "NOV"
+        WHEN MONTH(r.data) = 12 THEN "DEZ"
+        END AS Mes,
+        SUM(r.qtd_peixes) AS Total
+    FROM registro r
+    JOIN local l
+        ON r.fk_local = l.id
+    JOIN usuario u
+        ON l.fk_usuario = u.id
+    WHERE u.id = ${id_usuario}
+    GROUP BY MES, MONTH(r.data)
+    ORDER BY MONTH(r.data);`
     console.log("Executando a instrução SQL: \n" + instrucao)
     return database.executar(instrucao)
 }
