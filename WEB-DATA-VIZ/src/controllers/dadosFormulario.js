@@ -93,8 +93,8 @@ function cadastrarModalidadePesca(req, res) {
 }
 
 function listarModalidadeProdutiva(req, res) {
-    
-    dadosFormularioModel.listarModalidadeProdutiva().then(function (resposta) {
+    const id_usuario = req.params.id_usuario
+    dadosFormularioModel.listarModalidadeProdutiva(id_usuario).then(function (resposta) {
         res.status(200).json(resposta)
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)

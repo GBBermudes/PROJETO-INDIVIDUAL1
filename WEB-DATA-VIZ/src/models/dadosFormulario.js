@@ -73,18 +73,21 @@ function cadastrarModalidadePesca(nome_modalidade_pesca) {
     return database.executar(instrucao)
 }
 
-function listarModalidadeProdutiva() {
+function listarModalidadeProdutiva(id_usuario) {
     var instrucao = `    
-        SELECT
-		    m.nome Modalidade,
-            ROUND(AVG(d.qtd_peixe), 1) media_peixes,
-            COUNT(m.nome) qtd_pescarias
-	    FROM modalidade m
-        JOIN dados_dashboard d
-		    ON d.fk_modalidade = m.id
-	    GROUP BY m.nome
-        ORDER BY AVG(d.qtd_peixe) DESC
-        LIMIT 1;
+            SELECT
+                m.nome Modalidade,
+                ROUND(AVG(d.qtd_peixe), 1) media_peixes,
+                COUNT(m.nome) qtd_pescarias
+            FROM modalidade m
+            JOIN dados_dashboard d
+                ON d.fk_modalidade = m.id
+            JOIN usuario U
+                ON d.fk_usuario = u.id
+            WHERE u.id = ${id_usuario}
+            GROUP BY m.nome
+            ORDER BY AVG(d.qtd_peixe) DESC
+            LIMIT 1;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucao)

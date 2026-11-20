@@ -252,7 +252,7 @@
             document.getElementById("local_recorde_pessoal").innerText = kpi1.Local;
         });
 
-    fetch("/dadosFormulario/listarModalidadeProdutiva")
+    fetch(`/dadosFormulario/listarModalidadeProdutiva/${id_usuario}`)
         .then(function (resposta) {
             return resposta.json();
         })
