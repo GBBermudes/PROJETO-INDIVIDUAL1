@@ -33,13 +33,14 @@ function cadastrar(req, res) {
     var modalidade = req.body.modalidade;
     var qtd_peixes = req.body.qtd_peixes;
     var nota = req.body.nota;
+    const id_usuario = req.params.id_usuario
 
     if (data == undefined || local == undefined || modalidade == undefined || qtd_peixes == undefined || nota == undefined) {
         res.status(400).send("Algum esta undefined");
         return;
     }
 
-    dadosFormularioModel.cadastrar(data, local, modalidade, qtd_peixes, nota).then(function (resposta) {
+    dadosFormularioModel.cadastrar(data, local, modalidade, qtd_peixes, id_usuario, nota).then(function (resposta) {
         res.status(200).send("Registro inserido com sucesso")
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
@@ -47,14 +48,15 @@ function cadastrar(req, res) {
 
 }
 
-function cadastrarLocalPesca(req, res) {
+function cadastrarLocalPesca(req, res,) {
     var nome_local_pesca = req.body.nome_local_pesca
+    const id_usuario = req.params.id_usuario
     if (nome_local_pesca == undefined) {
     res.status(400).send("Algum esta undefined");
     return;
     }
 
-    dadosFormularioModel.cadastrarLocalPesca(nome_local_pesca).then(function (resposta) {
+    dadosFormularioModel.cadastrarLocalPesca(nome_local_pesca, id_usuario).then(function (resposta) {
         res.status(200).send("Registro inserido com sucesso")
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
@@ -62,8 +64,8 @@ function cadastrarLocalPesca(req, res) {
 }
 
 function listarLocalPesca(req, res) {
-
-    dadosFormularioModel.listarLocalPesca().then(function (resposta) {
+    const id_usuario = req.params.id_usuario
+    dadosFormularioModel.listarLocalPesca(id_usuario).then(function (resposta) {
         res.status(200).json(resposta)
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
@@ -71,8 +73,8 @@ function listarLocalPesca(req, res) {
 }
 
 function listarModalidadesPesca(req, res) {
-
-    dadosFormularioModel.listarModalidadesPesca().then(function (resposta) {
+    const id_usuario = req.params.id_usuario
+    dadosFormularioModel.listarModalidadesPesca(id_usuario).then(function (resposta) {
         res.status(200).json(resposta)
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
@@ -81,12 +83,13 @@ function listarModalidadesPesca(req, res) {
 
 function cadastrarModalidadePesca(req, res) {
     var nome_modalidade_pesca = req.body.nome_modalidade_pesca
+    const id_usuario = req.params.id_usuario
     if (nome_modalidade_pesca == undefined) {
     res.status(400).send("Modalidade esta undefined");
     return;
     }
 
-    dadosFormularioModel.cadastrarModalidadePesca(nome_modalidade_pesca).then(function (resposta) {
+    dadosFormularioModel.cadastrarModalidadePesca(nome_modalidade_pesca, id_usuario).then(function (resposta) {
         res.status(200).send("Registro inserido com sucesso")
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)

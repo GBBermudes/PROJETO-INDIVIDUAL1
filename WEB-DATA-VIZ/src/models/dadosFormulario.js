@@ -41,34 +41,44 @@ function listarMaiorPesca(id_usuario) {
     return database.executar(instrucao)
 }
 
-function cadastrar(data, local, modalidade, qtd_peixes, nota) {
+function cadastrar(data, local, modalidade, qtd_peixes,id_usuario, nota) {
     var instrucao = `
-    INSERT INTO dados_dashboard (dataa, fk_local_pesca , fk_modalidade, qtd_peixe, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}', '${nota}')
+    INSERT INTO dados_dashboard (dataa, fk_local_pesca , fk_modalidade, qtd_peixe, fk_usuario, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}','${id_usuario}' '${nota}')
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function cadastrarLocalPesca(nome_local_pesca) {
-    var instrucao = `INSERT INTO local_pesca (nome) VALUES ('${nome_local_pesca}')`;
+function cadastrarLocalPesca(nome_local_pesca, id_usuario) {
+    var instrucao = `INSERT INTO local_pesca (nome, fk_usuario) VALUES ('${nome_local_pesca}', '${id_usuario}')`;
     console.log("Executando a intrução SQL: \n" + instrucao);
     return database.executar(instrucao)
 }
 
-function listarLocalPesca() {
-    var instrucao = `SELECT * FROM local_pesca;`;
+function listarLocalPesca(id_usuario) {
+    var instrucao = `SELECT 
+                        l.nome 
+                    FROM local_pesca l 
+                    JOIN usuario u 
+                        ON l.fk_usuario = u.id 
+                    WHERE u.id = ${id_usuario};`;
     console.log("Executando a instrucao SQL: \n" + instrucao);
     return database.executar(instrucao)
 }
 
-function listarModalidadesPesca() {
-    var instrucao = `SELECT * FROM modalidade;`;
+function listarModalidadesPesca(id_usuario) {
+    var instrucao = `SELECT 
+                        m.nome
+                    FROM modalidade m
+                    JOIN usuario u
+                        ON m.fk_usuario = u.id
+                    WHERE u.id = ${id_usuario};`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao)
 }
 
-function cadastrarModalidadePesca(nome_modalidade_pesca) {
-    var instrucao = `INSERT INTO modalidade (nome) VALUES ('${nome_modalidade_pesca}')`;
+function cadastrarModalidadePesca(nome_modalidade_pesca, id_usuario) {
+    var instrucao = `INSERT INTO modalidade (nome, fk_usuario) VALUES ('${nome_modalidade_pesca}', '${id_usuario}')`;
     console.log("Executando a instrução SQL: \n" + instrucao)
     return database.executar(instrucao)
 }

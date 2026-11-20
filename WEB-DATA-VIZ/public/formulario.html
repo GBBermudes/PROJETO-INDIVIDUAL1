@@ -12,7 +12,7 @@
     <div class="box-pai">
         <div class="navbar">
             <div class="hanken titulo-navbar">
-                <h1>Diário de <span id="id_usuario"></span></h3>
+                <h1>Diário de <span id="id_usuarioo"></span></h3>
             </div>
             <div class="hanken menu-navbar">
                 <span class="bt-registrar">Registrar</span>
@@ -59,13 +59,15 @@
 <script>
     
     const nome_usuario = sessionStorage.getItem("NOME_USUARIO")
-    id_usuario.innerHTML = nome_usuario
-
+    id_usuarioo.innerHTML = nome_usuario
+    
+    const id_usuario = sessionStorage.getItem("ID_USUARIO")
+    
     function cadastrarLocalPesca() {
         var nome_local_pesca = prompt("Insira o novo local")
 
         alert("Registro realizado com sucesso!")
-        fetch("/dadosFormulario/cadastrarLocalPesca", {
+        fetch(`/dadosFormulario/cadastrarLocalPesca/${id_usuario}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -81,7 +83,7 @@
         var nome_modalidade_pesca = prompt("Insira a nova modalidade: ")
 
         alert("Registro realizado com sucesso!")
-        fetch("/dadosFormulario/cadastrarModalidadePesca", {
+        fetch(`/dadosFormulario/cadastrarModalidadePesca/${id_usuario}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -108,7 +110,7 @@
             alert("Insira uma quantidade de peixes validos")
         } else {
             alert("Registro realizado com sucesso!")
-            fetch("/dadosFormulario/cadastrar", {
+            fetch(`/dadosFormulario/cadastrar/${id_usuario}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -124,7 +126,7 @@
         }
     }
 
-    fetch("/dadosFormulario/listarLocalPesca")
+    fetch(`/dadosFormulario/listarLocalPesca/${id_usuario}`)
         .then(function (resposta) {
             return resposta.json();
         })
@@ -142,7 +144,7 @@
             console.log("Erro:", erro);
         });
 
-    fetch("/dadosFormulario/listarModalidadesPesca")
+    fetch(`/dadosFormulario/listarModalidadesPesca/${id_usuario}`)
         .then(function (resposta) {
             return resposta.json();
         })

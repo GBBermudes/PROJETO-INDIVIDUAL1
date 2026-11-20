@@ -3,7 +3,7 @@ var router = express.Router();
 
 var dadosFormularioController = require("../controllers/dadosFormulario");
 
-router.post("/cadastrar", function (req, res) {
+router.post("/cadastrar/:id_usuario", function (req, res) {
     dadosFormularioController.cadastrar(req, res);
 });
 
@@ -15,19 +15,19 @@ router.get("/listarMaiorPesca/:id_usuario", function (req, res) {
     dadosFormularioController.listarMaiorPesca(req, res);
 })
 
-router.post("/cadastrarLocalPesca", function (req, res) {
+router.post("/cadastrarLocalPesca/:id_usuario", function (req, res) {
     dadosFormularioController.cadastrarLocalPesca(req, res)
 })
 
-router.get("/listarLocalPesca", function (req, res) {
+router.get("/listarLocalPesca/:id_usuario", function (req, res) {
     dadosFormularioController.listarLocalPesca(req, res)
 })
 
-router.get("/listarModalidadesPesca", function (req, res) {
+router.get("/listarModalidadesPesca/:id_usuario", function (req, res) {
     dadosFormularioController.listarModalidadesPesca(req, res)
 })
 
-router.post("/cadastrarModalidadePesca", function (req, res) {
+router.post("/cadastrarModalidadePesca/:id_usuario", function (req, res) {
     dadosFormularioController.cadastrarModalidadePesca(req, res)
 })
 
