@@ -5,16 +5,16 @@ function listar(id_usuario) {
     var instrucao = `
             SELECT
                 l.nome as 'local',
-                ROUND(AVG(d.qtd_peixe), 1) media_peixes,
+                ROUND(AVG(r.qtd_peixes), 1) media_peixes,
                 COUNT(l.nome) qtd_idas
-            FROM dados_dashboard d
-            JOIN local_pesca l
-                ON d.fk_local_pesca = l.id
+            FROM registro r
+            JOIN local l
+                ON r.fk_local = l.id
             JOIN usuario u
-                ON d.fk_usuario = u.id
+                ON l.fk_usuario = u.id
             WHERE u.id = ${id_usuario}
             GROUP BY l.nome
-            ORDER BY AVG(d.qtd_peixe) DESC
+            ORDER BY AVG(r.qtd_peixes) DESC
             LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
