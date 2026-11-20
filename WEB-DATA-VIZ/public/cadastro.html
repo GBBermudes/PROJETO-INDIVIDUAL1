@@ -140,24 +140,27 @@
         inserirAutorizado = false
       }
     }
+
     if (!inserirAutorizado) {
       alert('Todos os campos devem estar preenchidos!')
-    } else if (senha.includes('0') || senha.includes('1') ||
-      senha.includes('2') || senha.includes('3') ||
-      senha.includes('4') || senha.includes('5') ||
-      senha.includes('6') || senha.includes('7') ||
-      senha.includes('8') || senha.includes('9')) {
-
-    } else if (senha.includes('?') || senha.includes('!') ||
-      senha.includes('@') || senha.includes('#') ||
-      senha.includes(':')) {
-    } else if (senha.length < 8) {
-
-    } else if (senha == senha.toUpperCase()) { // Não tem minusculo
-
-    } else if (senha == senha.toLowerCase()) { //não tem maiusculo
-
+    } else if (!(senhaVar.includes('0') || senhaVar.includes('1') ||
+      senhaVar.includes('2') || senhaVar.includes('3') ||
+      senhaVar.includes('4') || senhaVar.includes('5') ||
+      senhaVar.includes('6') || senhaVar.includes('7') ||
+      senhaVar.includes('8') || senhaVar.includes('9'))) {
+      console.log(1)
+    } else if (!(senhaVar.includes('?') || senhaVar.includes('!') ||
+      senhaVar.includes('@') || senhaVar.includes('#') ||
+      senhaVar.includes(':'))) {
+      console.log(2)
+    } else if (senhaVar.length < 8) {
+      console.log(3)
+    } else if (senhaVar == senhaVar.toUpperCase()) { // Não tem minusculo
+      console.log(4)
+    } else if (senhaVar == senhaVar.toLowerCase()) { //não tem maiusculo
+      console.log(5)
     } else {
+      console.log(6)
       fetch("/usuarios/cadastrar", {
         method: "POST",
         headers: {
@@ -173,24 +176,14 @@
         }),
       })
         .then(function (resposta) {
-          console.log("resposta: ", resposta);
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-          if (resposta.ok) {
-            cardErro.style.display = "block";
-
-            mensagem_erro.innerHTML =
-              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-            setTimeout(() => {
-              window.location = "login.html";
-            }, "2000");
-
-            limparFormulario();
-            finalizarAguardar();
-          } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
-          }
-        })
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+        }
+        )
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
           finalizarAguardar();

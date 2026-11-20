@@ -12,7 +12,7 @@
     <div class="box-pai">
         <div class="navbar">
             <div class="hanken titulo-navbar">
-                <h1>Diário de Samuela</h3>
+                <h1>Diário de <span id="id_usuario"></span></h3>
             </div>
             <div class="hanken menu-navbar">
                 <span class="bt-registrar">Registrar</span>
@@ -57,6 +57,10 @@
 </body>
 
 <script>
+    
+    const nome_usuario = sessionStorage.getItem("NOME_USUARIO")
+    id_usuario.innerHTML = nome_usuario
+
     function cadastrarLocalPesca() {
         var nome_local_pesca = prompt("Insira o novo local")
 

@@ -14,7 +14,7 @@
     <div class="box-pai">
         <div class="navbar">
             <div class="hanken titulo-navbar">
-                <h1>Diário de Samuela</h3>
+                <h1>Diário de <span id="nomeUsuario"></span></h3>
             </div>
             <div class="hanken menu-navbar">
                 <a href="formulario.html">
@@ -94,7 +94,8 @@
 
     const ctx = document.getElementById('grafico_qtd_peixes');
     const id_usuario = sessionStorage.getItem("ID_USUARIO")
-    console.log(id_usuario)
+    const nome_usuario = sessionStorage.getItem("NOME_USUARIO")
+    nomeUsuario.innerHTML = nome_usuario
 
     fetch("/dadosFormulario/listarMeta")
         .then(function (resposta) {
