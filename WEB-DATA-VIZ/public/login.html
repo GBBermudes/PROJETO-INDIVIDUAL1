@@ -60,7 +60,8 @@
             <div class="texto_cadastro">
                 <div class="titulo_cadastro">
                     <h1 class="titulo young-serif-regular" style="font-size: 55px; line-height: 70px;">Bem-vindo
-                        <br>devolta!</h1>
+                        <br>devolta!
+                    </h1>
                 </div>
                 <p>Insira suas informações para conectar!</p>
             </div>
@@ -75,12 +76,13 @@
                         <span>Senha:</span>
                         <input id="senha_input" type="password" placeholder="******">
                     </div>
+                    <div id="div_aguardar" class="loading-div">
+                        <img src="./assets/aguarde-verde.gif" id="loading-gif">
+                    </div>
                     <button class="botao" onclick="entrar()">Entrar</button>
                 </div>
 
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
+
 
                 <div id="div_erros_login"></div>
             </div>

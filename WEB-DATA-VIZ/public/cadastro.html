@@ -81,19 +81,32 @@
             <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
           </div>
           <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
+            <div class="senha">
+              <p class="campos" for="senha_ipt"></p>
+              <span>Senha:</span><br>
+              <input id="senha_input" type="password" placeholder="******" onkeyup="validar()" />
+              <div class="popover-requisitos">
+                <p>Sua senha deve conter:</p><br>
+                <div class="validacoes">
+                  <p id="regra_tamanho" style="color: gray;">● Mínimo de 8 caracteres</p>
+                  <p id="regra_maiuscula" style="color: gray;">● Uma letra maiúscula</p>
+                  <p id="regra_minuscula" style="color: gray;">● Uma letra minúscula</p>
+                  <p id="regra_numero" style="color: gray;">● Um número</p>
+                  <p id="regra_especial" style="color: gray;">● Um caractere especial (! ? @ # :)</p>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="campo">
             <span>Confirmação da Senha:</span>
             <input id="confirmacao_senha_input" type="password" placeholder="******" />
+            <div id="senha_diferente"></div>
+          </div>
+          <div id="div_aguardar" class="loading-div">
+            <img src="./assets/aguarde-verde.gif" id="loading-gif">
           </div>
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
-
         <div id="div_erros_login"></div>
       </div>
     </div>
@@ -117,8 +130,48 @@
   let listaEmpresasCadastradas = [];
   let listaValidacaoSenha = []
 
+  function validar() {
+    let senha = senha_input.value
+
+    if (senha.length >= 8) {
+      regra_tamanho.innerHTML = `<span style="color: green; font-weight: 700;">● Mínimo de 8 caracteres</span>`
+    } else {
+      regra_tamanho.innerHTML = `<span style="color: gray; font-weight: 700;">● Mínimo de 8 caracteres</span>`
+    }
+
+    if (senha != senha.toLowerCase()) {
+      regra_maiuscula.innerHTML = `<span style="color: green; font-weight: 700;">● Uma letra maiúscula</span>`
+    } else {
+      regra_maiuscula.innerHTML = `<span style="color: gray; font-weight: 700;">● Uma letra maiúscula</span>`
+    }
+
+    if (senha != senha.toUpperCase()) {
+      regra_minuscula.innerHTML = `<span style="color: green; font-weight: 700;">● Uma letra minúscula</span>`
+    } else {
+      regra_minuscula.innerHTML = `<span style="color: gray; font-weight: 700;">● Uma letra minúscula</span>`
+    }
+
+    if (senha.includes('0') || senha.includes('1') ||
+      senha.includes('2') || senha.includes('3') ||
+      senha.includes('4') || senha.includes('5') ||
+      senha.includes('6') || senha.includes('7') ||
+      senha.includes('8') || senha.includes('9')) {
+      regra_numero.innerHTML = `<span style="color: green; font-weight: 700;">● Um número</span>`
+    } else {
+      regra_numero.innerHTML = `<span style="color: gray; font-weight: 700;">● Um número</span>`
+    }
+
+    if (senha.includes('?') || senha.includes('!') ||
+      senha.includes('@') || senha.includes('#') ||
+      senha.includes(':')) {
+      regra_especial.innerHTML = `<span style="color: green; font-weight: 700;">● Um caractere especial (! ? @ # :)</span>`
+    } else {
+      regra_especial.innerHTML = `<span style="color: gray; font-weight: 700;">● Um caractere especial (! ? @ # :)</span>`
+    }
+  }
+
   function cadastrar() {
-    // aguardar();
+    aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -148,19 +201,16 @@
       senhaVar.includes('4') || senhaVar.includes('5') ||
       senhaVar.includes('6') || senhaVar.includes('7') ||
       senhaVar.includes('8') || senhaVar.includes('9'))) {
-      console.log(1)
     } else if (!(senhaVar.includes('?') || senhaVar.includes('!') ||
       senhaVar.includes('@') || senhaVar.includes('#') ||
       senhaVar.includes(':'))) {
-      console.log(2)
     } else if (senhaVar.length < 8) {
-      console.log(3)
     } else if (senhaVar == senhaVar.toUpperCase()) { // Não tem minusculo
-      console.log(4)
     } else if (senhaVar == senhaVar.toLowerCase()) { //não tem maiusculo
-      console.log(5)
+    } else if (confirmacaoSenhaVar != senhaVar) {
+      senha_diferente.innerHTML = `<span style="color: red; font-weight: 700;">Confirmação diferente da senha</span>`
+      finalizarAguardar();
     } else {
-      console.log(6)
       fetch("/usuarios/cadastrar", {
         method: "POST",
         headers: {
