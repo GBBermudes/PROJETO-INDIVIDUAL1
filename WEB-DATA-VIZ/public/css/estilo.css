@@ -374,6 +374,13 @@ button:active {
   border-radius: 20px;
 }
 
+.relato4 {
+  background-image: url(../assets/imgs/FOTO_PESCANDO_5.jpeg);
+  background-size: cover;
+  border-radius: 20px;
+}
+
+
 
 .relatos::-webkit-scrollbar {
   height: 17px;
