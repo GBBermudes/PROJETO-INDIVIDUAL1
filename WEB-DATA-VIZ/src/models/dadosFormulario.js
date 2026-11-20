@@ -158,7 +158,7 @@ function listarRankingModalidades(id_usuario) {
                         ON r.fk_modalidade = m.id
                     JOIN usuario u
                         ON m.fk_usuario = u.id
-                    WHERE u.id = ${id_usuario}
+                    WHERE u.id = ${id_usuario} AND YEAR(r.data) = 2026
                     GROUP BY m.nome
                     ORDER BY avg(r.nota) DESC
                     LIMIT 4;`
