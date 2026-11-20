@@ -79,7 +79,7 @@ function listarModalidadesPesca(id_usuario) {
 }
 
 function cadastrarModalidadePesca(nome_modalidade_pesca, id_usuario) {
-    var instrucao = `INSERT INTO modalidade (nome, fk_usuario) VALUES ('${nome_modalidade_pesca}', '${id_usuario}')`;
+    var instrucao = `INSERT INTO modalidade (nome, fk_usuario) VALUES ('${nome_modalidade_pesca}', ${id_usuario})`;
     console.log("Executando a instrução SQL: \n" + instrucao)
     return database.executar(instrucao)
 }
