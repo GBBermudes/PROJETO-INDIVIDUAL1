@@ -124,7 +124,7 @@
             alert("Insira uma quantidade de peixes validos")
         } else {
             alert("Registro realizado com sucesso!")
-            fetch(`/dadosFormulario/cadastrar/${id_usuario}`, {
+            fetch(`/dadosFormulario/cadastrar`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

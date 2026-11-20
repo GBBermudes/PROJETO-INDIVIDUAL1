@@ -24,16 +24,16 @@ function listar(id_usuario) {
 function listarMaiorPesca(id_usuario) {
     var instrucao = `
         	SELECT 
-                d.qtd_peixe,
-                DATE_FORMAT(d.dataa, '%d/%m/%Y') as 'Data',
+                r.qtd_peixes,
+                DATE_FORMAT(r.data, '%d/%m/%Y') as 'Data',
                 l.nome as 'Local'
-            FROM dados_dashboard d
-            JOIN local_pesca l
-                ON d.fk_local_pesca = l.id
+            FROM registro r
+            JOIN local l
+                ON d.fk_local = l.id
             JOIN usuario u
                 ON d.fk_usuario = u.id
             WHERE u.id = ${id_usuario}
-            ORDER BY qtd_peixe DESC
+            ORDER BY qtd_peixes DESC
             LIMIT 1;
     `;
 
@@ -41,9 +41,9 @@ function listarMaiorPesca(id_usuario) {
     return database.executar(instrucao)
 }
 
-function cadastrar(data, local, modalidade, qtd_peixes,id_usuario, nota) {
+function cadastrar(data, local, modalidade, qtd_peixes, nota) {
     var instrucao = `
-    INSERT INTO dados_dashboard (dataa, fk_local_pesca , fk_modalidade, qtd_peixe, fk_usuario, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}','${id_usuario}', '${nota}')
+    INSERT INTO registro (data, fk_local , fk_modalidade, qtd_peixes, nota) VALUES ('${data}', '${local}', '${modalidade}', '${qtd_peixes}', ${nota})
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -59,7 +59,7 @@ function listarLocalPesca(id_usuario) {
     var instrucao = `SELECT
                         l.id,
                         l.nome 
-                    FROM local_pesca l 
+                    FROM local l 
                     JOIN usuario u 
                         ON l.fk_usuario = u.id 
                     WHERE u.id = ${id_usuario};`;
@@ -68,7 +68,8 @@ function listarLocalPesca(id_usuario) {
 }
 
 function listarModalidadesPesca(id_usuario) {
-    var instrucao = `SELECT 
+    var instrucao = `SELECT
+                        m.id,
                         m.nome
                     FROM modalidade m
                     JOIN usuario u

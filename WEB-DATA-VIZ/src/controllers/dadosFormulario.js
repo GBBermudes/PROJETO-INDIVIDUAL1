@@ -33,7 +33,9 @@ function cadastrar(req, res) {
     var modalidade = req.body.modalidade;
     var qtd_peixes = req.body.qtd_peixes;
     var nota = req.body.nota;
-    const id_usuario = req.params.id_usuario
+    if (modalidade == 1) {
+        console.log('Cheguei no controler')
+    }
 
     if (data == undefined || local == undefined || modalidade == undefined || qtd_peixes == undefined || nota == undefined) {
         res.status(400).send("Algum esta undefined");
@@ -41,7 +43,7 @@ function cadastrar(req, res) {
     } else {
 
         
-        dadosFormularioModel.cadastrar(data, local, modalidade, qtd_peixes, id_usuario, nota).then(function (resposta) {
+        dadosFormularioModel.cadastrar(data, local, modalidade, qtd_peixes, nota).then(function (resposta) {
             console.log("Estou na controller")
             console.log(resposta)
             res.status(200).send("Registro inserido com sucesso")
