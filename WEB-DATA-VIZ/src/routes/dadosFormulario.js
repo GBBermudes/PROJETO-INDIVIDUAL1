@@ -41,11 +41,11 @@ router.get("/listarPeixesPorMes/:id_usuario", function (req, res) {
     dadosFormularioController.listarPeixesPorMes(req,res)
 })
 
-router.post("/cadastrarMeta", function (req,res) {
-    dadosFormularioController.cadastrarMeta(req,res)
+router.post("/atualizarMeta/:id_usuario", function (req,res) {
+    dadosFormularioController.atualizarMeta(req,res)
 })
 
-router.get("/listarMeta", function(req,res) {
+router.get("/listarMeta/:id_usuario", function(req,res) {
     dadosFormularioController.listarMeta(req,res)
 })
 
@@ -55,6 +55,10 @@ router.get("/listarRankingModalidades/:id_usuario", function (req,res) {
 
 router.get("/listarTabelaRegistro/:id_usuario", function(req,res) {
     dadosFormularioController.listarTabelaRegistro(req,res)
+})
+
+router.post("/cadastrarMeta/:id_usuario", function (req,res) {
+    dadosFormularioController.cadastrarMeta(req, res)
 })
 
 module.exports = router;

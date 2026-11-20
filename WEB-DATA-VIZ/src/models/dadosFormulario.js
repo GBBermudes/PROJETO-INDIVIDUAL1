@@ -137,14 +137,14 @@ function listarPeixesPorMes(id_usuario) {
     return database.executar(instrucao)
 }
 
-function cadastrarMeta(meta) {
-    var instrucao = `UPDATE meta_peixes SET meta = ${meta}`
+function atualizarMeta(meta, id_usuario) {
+    var instrucao = `UPDATE meta SET meta = ${meta} WHERE fk_usuario = ${id_usuario}`
     console.log("Executando a instrução SQL: \n" + instrucao)
     return database.executar(instrucao);
 }
 
-function listarMeta() {
-    var instrucao = `SELECT meta FROM meta_peixes WHERE id = 1`
+function listarMeta(id_usuario) {
+    var instrucao = `SELECT meta FROM meta WHERE fk_usuario = ${id_usuario}`
     console.log("Executando a instrução SQL: \n" + instrucao)
     return database.executar(instrucao)
 }
@@ -168,21 +168,27 @@ function listarRankingModalidades(id_usuario) {
 
 function listarTabelaRegistro(id_usuario) {
     var instrucao = `SELECT
-                        DATE_FORMAT(d.dataa, '%d/%m/%Y') data_registro,
+                        DATE_FORMAT(r.data, '%d/%m/%Y') data_registro,
                         l.nome local_pesca,
                         m.nome modalidade,
-                        d.qtd_peixe,
-                        d.nota
-                    FROM dados_dashboard d
-                    JOIN local_pesca l
-                        ON d.fk_local_pesca = l.id
+                        r.qtd_peixes,
+                        r.nota
+                    FROM registro r
+                    JOIN local l
+                        ON r.fk_local = l.id
                     JOIN modalidade m
-                        ON d.fk_modalidade = m.id
+                        ON r.fk_modalidade = m.id
                     JOIN usuario u
-                        ON d.fk_usuario = u.id
+                        ON l.fk_usuario = u.id
                     WHERE u.id = ${id_usuario}
-                    ORDER BY d.id DESC;`
+                    ORDER BY r.id DESC;`
     console.log("Executando a intrucao SQL: \n" + instrucao)
+    return database.executar(instrucao)
+}
+
+function cadastrarMeta(id_usuario, meta) {
+    var instrucao = `INSERT INTO meta (meta, fk_usuario) VALUES (${meta}, ${id_usuario})`
+    console.log("Executando a instrução SQL: \n" + instrucao)
     return database.executar(instrucao)
 }
 
@@ -196,8 +202,9 @@ module.exports = {
     cadastrarModalidadePesca,
     listarModalidadeProdutiva,
     listarPeixesPorMes,
-    cadastrarMeta,
+    atualizarMeta,
     listarMeta,
     listarRankingModalidades,
-    listarTabelaRegistro
+    listarTabelaRegistro,
+    cadastrarMeta
 }

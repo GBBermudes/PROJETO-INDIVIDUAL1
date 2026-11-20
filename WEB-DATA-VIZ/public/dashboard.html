@@ -21,7 +21,7 @@
                     <span class="bt-registrar">Registrar</span>
                 </a>
                 <span class="bt-dashboard">Dashboard</span>
-                <a href="../public/login.html">
+                <a href="login.html">
                     <span class="bt-sair">Sair</span>
                 </a>
             </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="box-grafico">
                 <div class="grafico-1">
-                    <p>Quantidade de peixes por mes (2026)</p><button class="bt-meta" onclick="cadastrarMeta()">Definir
+                    <p>Quantidade de peixes por mes (2026)</p><button class="bt-meta" onclick="atualizarMeta()">Definir
                         Meta</button><br>
                     <div class="area-grafico-1">
                         <canvas id="grafico_qtd_peixes"></canvas>
@@ -97,9 +97,14 @@
     const nome_usuario = sessionStorage.getItem("NOME_USUARIO")
     nomeUsuario.innerHTML = nome_usuario
 
-    fetch("/dadosFormulario/listarMeta")
+    fetch(`/dadosFormulario/cadastrarMeta/${id_usuario}`, {
+            method:"POST"
+        })
+
+    fetch(`/dadosFormulario/listarMeta/${id_usuario}`)
         .then(function (resposta) {
             return resposta.json();
+            console.log(resposta)
         })
         .then(function (dados) {
             meta = Number(dados[0].meta)
@@ -265,14 +270,15 @@
             document.getElementById("total_pescarias_modalidade").innerText = kpi3.qtd_pescarias;
         })
 
-    function cadastrarMeta() {
+    function atualizarMeta() { 
+
         var meta = Number(prompt("Insira sua meta: "))
 
         if (meta <= 0) {
             alert("Insira uma meta válida")
         } else {
 
-            fetch("/dadosFormulario/cadastrarMeta", {
+            fetch(`/dadosFormulario/atualizarMeta/${id_usuario}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

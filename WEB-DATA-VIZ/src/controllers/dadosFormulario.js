@@ -111,14 +111,15 @@ function listarModalidadeProdutiva(req, res) {
     })
 }
 
-function cadastrarMeta(req ,res) {
+function atualizarMeta(req ,res) {
     var meta = req.body.meta
+    const id_usuario = req.params.id_usuario
     if (meta == undefined) {
         res.status(400).send("Meta esta undefined");
         return
     }
 
-        dadosFormularioModel.cadastrarMeta(meta).then(function (resposta) {
+        dadosFormularioModel.atualizarMeta(meta, id_usuario).then(function (resposta) {
         res.status(200).send("Registro inserido com sucesso")
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
@@ -126,7 +127,8 @@ function cadastrarMeta(req ,res) {
 }
 
 function listarMeta(req,res){
-    dadosFormularioModel.listarMeta().then(function (resposta) {
+    const id_usuario = req.params.id_usuario
+    dadosFormularioModel.listarMeta(id_usuario).then(function (resposta) {
         res.status(200).json(resposta)
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage)
@@ -151,6 +153,16 @@ function listarTabelaRegistro(req,res) {
     })
 }
 
+function cadastrarMeta(req, res) {
+    const id_usuario = req.params.id_usuario
+    var meta = 0
+    dadosFormularioModel.cadastrarMeta(id_usuario, meta).then(function (resposta) {
+        res.status(200).json(resposta)
+    }).catch(function (erro){
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
 module.exports = {
     listar,
     cadastrar,
@@ -161,8 +173,9 @@ module.exports = {
     cadastrarModalidadePesca,
     listarModalidadeProdutiva,
     listarPeixesPorMes,
-    cadastrarMeta,
+    atualizarMeta,
     listarMeta,
     listarRankingModalidades,
-    listarTabelaRegistro
+    listarTabelaRegistro,
+    cadastrarMeta
 }
