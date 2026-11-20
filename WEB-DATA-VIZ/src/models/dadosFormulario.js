@@ -29,9 +29,9 @@ function listarMaiorPesca(id_usuario) {
                 l.nome as 'Local'
             FROM registro r
             JOIN local l
-                ON d.fk_local = l.id
+                ON r.fk_local = l.id
             JOIN usuario u
-                ON d.fk_usuario = u.id
+                ON l.fk_usuario = u.id
             WHERE u.id = ${id_usuario}
             ORDER BY qtd_peixes DESC
             LIMIT 1;

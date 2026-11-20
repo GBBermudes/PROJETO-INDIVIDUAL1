@@ -29,19 +29,19 @@
         <div class="box-dashboard">
             <div class="box-kpi">
                 <div class="kpi kpi-qtd-peixes">
-                    <p>Recorde pessoal</p><br>
+                    <p>Recorde de Peixes</p><br>
                     <span id="qtd_peixe"></span>
                     <p class="detalhes"><span id="data_recorde_pessoal"></span>&nbsp; - &nbsp;<span
                             id="local_recorde_pessoal"></span></p>
                 </div>
                 <div class="kpi kpi-local-favorito">
-                    <p>Local mais produtivo:</p>
+                    <p>Local mais produtivo por média de peixes</p>
                     <span id="local_mais_produtivo"></span>
                     <p><span id="media_peixes_local"></span>&nbsp;peixes/pescaria&nbsp;-&nbsp;<span
                             id="qtd_pescarias_local"></span>&nbsp;pescarias</p>
                 </div>
                 <div class="kpi kpi-modalidade-favorita">
-                    <p>Modalidade mais produtiva</p><br>
+                    <p>Modalidade mais produtiva por média de peixes</p><br>
                     <span id="modalidade_mais_produtiva"></span><br>
                     <p><span id="media_peixes_modalidade"></span>&nbsp;peixes/pescaria -&nbsp;<span
                             id="total_pescarias_modalidade"></span>&nbsp;pescarias</p>
@@ -248,7 +248,7 @@
         .then(function (dados) {
             var kpi1 = dados[0]
 
-            document.getElementById("qtd_peixe").innerText = kpi1.qtd_peixe;
+            document.getElementById("qtd_peixe").innerText = kpi1.qtd_peixes;
             document.getElementById("data_recorde_pessoal").innerText = kpi1.Data;
             document.getElementById("local_recorde_pessoal").innerText = kpi1.Local;
         });
