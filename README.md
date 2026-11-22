@@ -1,4 +1,4 @@
-# 🎣 Diário de Pescas
+# Diário de Pescas
 
 Sistema web para registrar pescarias e acompanhar o desempenho do pescador por meio de um dashboard.
 
