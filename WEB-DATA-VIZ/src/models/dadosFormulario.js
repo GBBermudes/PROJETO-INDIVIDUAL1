@@ -94,7 +94,7 @@ function listarModalidadeProdutiva(id_usuario) {
             FROM modalidade m
             JOIN registro r
                 ON r.fk_modalidade = m.id
-            JOIN usuario U
+            JOIN usuario u
                 ON m.fk_usuario = u.id
             WHERE u.id = ${id_usuario}
             GROUP BY m.nome

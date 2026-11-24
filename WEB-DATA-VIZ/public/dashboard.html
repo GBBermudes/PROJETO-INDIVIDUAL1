@@ -97,10 +97,6 @@
     const nome_usuario = sessionStorage.getItem("NOME_USUARIO")
     nomeUsuario.innerHTML = nome_usuario
 
-    fetch(`/dadosFormulario/cadastrarMeta/${id_usuario}`, {
-            method:"POST"
-        })
-
     fetch(`/dadosFormulario/listarMeta/${id_usuario}`)
         .then(function (resposta) {
             return resposta.json();
